@@ -3,51 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Ankle sprain rehab plans for basketball players. Pick your sprain and grade to get a day-by-day plan.">
-<title>Back on Court</title>
+<meta name="description" content="Ankle sprain rehab plans for basketball players. Answer three questions to get a day-by-day plan.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cpath d=%22M11.5 2 C11 10 10.5 18 11 24 C10 27 9.5 31 11.5 33 C12.8 34.3 14.5 34.6 16 34.6 L33.5 34.6 C36 34.6 37.5 33.6 37.5 31.8 C37.5 30 36.2 29 34.5 28.4 C29 26.5 23.5 24.5 20.5 21.5 C19.6 20.6 19.3 19.4 19.3 18 L19 2%22 fill=%22none%22 stroke=%22%23111111%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3Cg fill=%22%23e0581f%22 stroke=%22%23ffffff%22 stroke-width=%221.3%22 paint-order=%22stroke%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M14.3 16.4 h2.6 v2.3 h2.3 v2.6 h-2.3 v2.3 h-2.6 v-2.3 h-2.3 v-2.6 h2.3 Z%22/%3E%3C/g%3E%3C/svg%3E">
+<title>Rebound</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a two-step triage panel (ankle diagram + choices), then a day-scaled timeline and a stack of rehab blocks. */
+/* Layout: three views. A centered landing page, a one-question-at-a-time survey, and a plan page (start callout, timeline, blocks). Single light theme by request. */
 :root {
-  --bg: #f2f5f8;
-  --surface: #ffffff;
-  --ink: #142030;
-  --muted: #586779;
-  --line: #d6dde6;
-  --accent: #d9541e;
-  --accent-ink: #ae3f10;
-  --accent-soft: #fbe8dd;
-  --bone: #ffffff;
-  --lig: #9aa7b6;
-  --ok: #23804f;
-  --ok-soft: #dcf0e4;
-  --warn: #a8700a;
-  --warn-soft: #f8ecd2;
-  --stop: #b8352a;
-  --stop-soft: #f9e1dd;
+  color-scheme: light;
+  --bg: #ffffff;
+  --soft: #f5f6f7;
+  --ink: #111111;
+  --muted: #5b6168;
+  --line: #e1e4e8;
+  --accent: #e0581f;
+  --accent-ink: #b5420f;
+  --accent-soft: #fdeee6;
+  --ok: #1f7a4a;
+  --ok-soft: #e1f2e8;
+  --warn: #9a6608;
+  --warn-soft: #faf0d9;
+  --stop: #b3342a;
+  --stop-soft: #fbe4e0;
+  --lig: #e6eef7;
+  --lig-edge: #9db2c8;
+  --shadow: rgba(17, 17, 17, 0.14);
   --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --font-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --radius: 10px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f1620; --surface: #17212d; --ink: #e7edf3; --muted: #95a3b3; --line: #2b3746;
-    --accent: #f07a45; --accent-ink: #f79a6e; --accent-soft: #3a2418; --bone: #223142; --lig: #617184;
-    --ok: #5cc08a; --ok-soft: #16301f; --warn: #e3ae3f; --warn-soft: #33280f; --stop: #ef6d5d; --stop-soft: #3b1a17;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0f1620; --surface: #17212d; --ink: #e7edf3; --muted: #95a3b3; --line: #2b3746;
-  --accent: #f07a45; --accent-ink: #f79a6e; --accent-soft: #3a2418; --bone: #223142; --lig: #617184;
-  --ok: #5cc08a; --ok-soft: #16301f; --warn: #e3ae3f; --warn-soft: #33280f; --stop: #ef6d5d; --stop-soft: #3b1a17;
-  color-scheme: dark;
-}
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
@@ -55,84 +43,121 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
 p { margin: 0; }
 ul { margin: 0; padding: 0; list-style: none; }
-button { font: inherit; color: inherit; }
+button, input { font: inherit; color: inherit; }
+a { color: var(--accent-ink); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
 
 .wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent-ink); }
+.display { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 1; }
 
-/* Header */
-.site-head { border-bottom: 1px solid var(--line); background: var(--surface); }
-.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; letter-spacing: 0.01em; text-transform: uppercase; line-height: 1; }
-.brand svg { flex: none; }
-.head-note { font-size: 0.85rem; color: var(--muted); text-align: right; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--bg); cursor: pointer; font-weight: 600; font-size: 0.95rem; text-decoration: none; color: var(--ink); }
+.btn:hover { border-color: var(--ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn.big { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 14px 40px; border-radius: 999px; }
 
-/* Hero + selector */
-.hero .wrap { padding-block: 40px 48px; display: grid; gap: 28px; }
-.hero-intro { display: grid; gap: 12px; max-width: 62ch; }
-.hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 0.98; text-transform: uppercase; letter-spacing: 0.005em; }
-.hero-intro .lede { font-size: 1.08rem; color: var(--ink); }
-.disclaimer { font-size: 0.9rem; color: var(--muted); }
+/* Landing */
+.home { min-height: calc(100vh - 57px); min-height: calc(100svh - 57px); display: grid; grid-template-rows: 1fr auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.home-inner { display: grid; justify-items: center; align-content: center; gap: 18px; text-align: center; padding-block: 48px; }
+.home-logo { width: clamp(84px, 16vw, 128px); height: auto; }
+.home-title { font-size: clamp(3.6rem, 13vw, 8.5rem); letter-spacing: 0.01em; }
+.home-desc { font-size: 1rem; color: var(--muted); max-width: 40ch; }
+.home-inner .btn { margin-top: 10px; }
+.home-foot { text-align: center; font-size: 0.8rem; color: var(--muted); padding-block: 0 24px; }
 
-.selector { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 32px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
-.diagram { display: grid; gap: 8px; justify-items: center; position: sticky; top: 16px; }
-.diagram svg { width: 100%; max-width: 300px; height: auto; }
+/* Header (survey + plan) */
+.site-head { border-bottom: 1px solid var(--line); background: var(--bg); position: relative; }
+.site-head.with-progress { border-bottom-color: transparent; }
+.head-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 4px; background: var(--soft); }
+.head-progress span { display: block; height: 100%; background: var(--accent); transition: width 0.25s; }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; padding-block: 12px; }
+.main-nav { display: flex; align-items: center; gap: 4px 26px; flex-wrap: wrap; }
+.main-nav a { font-size: 0.95rem; font-weight: 600; color: var(--muted); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; }
+.main-nav a:hover { color: var(--ink); }
+.main-nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
+.brand { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; color: var(--ink); text-decoration: none; }
+
+/* Survey */
+.survey .wrap { padding-block: 36px 56px; display: grid; gap: 20px; }
+.q { display: grid; gap: 20px; }
+.q-head { display: grid; gap: 6px; }
+.q-head h1 { font-size: clamp(2.2rem, 5.5vw, 3.2rem); }
+.q-head p { color: var(--muted); max-width: 60ch; }
+.q1-body { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 32px; align-items: start; }
+.diagram { margin: 0; display: grid; gap: 8px; justify-items: center; background: var(--soft); border-radius: 14px; padding: 16px 12px 12px; }
+.diagram svg { width: 100%; max-width: 420px; height: auto; display: block; }
 .diagram figcaption { font-size: 0.8rem; color: var(--muted); text-align: center; }
-.bone { fill: var(--bone); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
-.foot { fill: var(--bone); stroke: var(--ink); stroke-width: 2; opacity: 0.6; }
-.lig { stroke: var(--lig); stroke-linecap: round; fill: none; transition: stroke 0.15s; }
-.lig-group { cursor: pointer; }
+.bone { stroke: #a88f63; stroke-width: 1.2; stroke-linejoin: round; }
+.lig-o { stroke: var(--lig-edge); stroke-linecap: round; fill: none; }
+.lig-f { stroke: var(--lig); stroke-linecap: round; fill: none; }
+.lig-group { cursor: pointer; outline: none; }
 .lig-group .hit { fill: transparent; }
-.lig-group:hover .lig, .lig-group.active .lig { stroke: var(--accent); }
-.lig-label { font-family: var(--font-display); font-weight: 600; font-size: 15px; fill: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
-.lig-group.active .lig-label, .lig-group:hover .lig-label { fill: var(--accent-ink); }
+.lig-group:hover .lig-o, .lig-group:focus-visible .lig-o, .lig-group.active .lig-o { stroke: var(--accent-ink); }
+.lig-group:hover .lig-f, .lig-group:focus-visible .lig-f, .lig-group.active .lig-f { stroke: var(--accent); }
+.lig-label { font-family: var(--font-display); font-weight: 700; font-size: 17px; fill: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.lig-group.active .lig-label, .lig-group:hover .lig-label, .lig-group:focus-visible .lig-label { fill: var(--accent-ink); }
 .leader { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; }
-.side-label { font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; fill: var(--muted); }
+.side-label { font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.14em; fill: var(--muted); }
 
-.steps { display: grid; gap: 28px; min-width: 0; }
-.step { display: grid; gap: 12px; }
-.step-head { display: flex; align-items: baseline; gap: 10px; }
-.step-num { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--ink); color: var(--surface); flex: none; transform: translateY(2px); }
-.step h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; text-transform: uppercase; line-height: 1.1; }
-.step.locked .step-num { background: var(--line); color: var(--muted); }
-.step-hint { font-size: 0.9rem; color: var(--muted); }
-
-.options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.opt { text-align: left; background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 14px 14px 16px; cursor: pointer; display: grid; gap: 4px; align-content: start; transition: border-color 0.15s, background 0.15s; min-width: 0; }
-.opt:hover:not(:disabled) { border-color: var(--accent); }
+.options { display: grid; gap: 10px; }
+.options.row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.opt { text-align: left; background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 14px 16px 16px; cursor: pointer; display: grid; gap: 4px; align-content: start; transition: border-color 0.15s, background 0.15s; min-width: 0; }
+.opt:hover { border-color: var(--ink); }
 .opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
-.opt:disabled { cursor: not-allowed; opacity: 0.5; }
 .opt-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.opt-name { font-family: var(--font-display); font-weight: 700; font-size: 1.45rem; line-height: 1.05; text-transform: uppercase; }
-.opt-text { font-size: 0.88rem; color: var(--muted); }
-.opt-meta { font-size: 0.78rem; font-weight: 600; color: var(--ink); margin-top: 4px; }
+.opt-name { font-size: 1.5rem; }
+.opt-text { font-size: 0.9rem; color: var(--muted); }
+.opt-meta { font-size: 0.8rem; font-weight: 600; margin-top: 2px; }
 .grade-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.numeral { font-family: var(--font-display); font-weight: 700; font-size: 2.6rem; line-height: 0.9; }
+.numeral { font-family: var(--font-display); font-weight: 700; font-size: 2.8rem; line-height: 0.9; }
 .pill { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
 .pill.ok { background: var(--ok-soft); color: var(--ok); }
 .pill.warn { background: var(--warn-soft); color: var(--warn); }
 .pill.stop { background: var(--stop-soft); color: var(--stop); }
+.q-note { font-size: 0.9rem; color: var(--muted); max-width: 64ch; }
+
+.days-box { display: grid; gap: 18px; max-width: 640px; }
+.stepper { display: flex; align-items: stretch; gap: 0; width: max-content; border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; }
+.stepper button { width: 56px; border: 0; background: var(--soft); cursor: pointer; font-size: 1.6rem; font-weight: 600; }
+.stepper button:hover { background: var(--line); }
+.stepper input { width: 110px; border: 0; text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 2.6rem; padding: 6px 0; background: var(--bg); font-variant-numeric: tabular-nums; -moz-appearance: textfield; }
+.stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.days-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.days-unit { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; text-transform: uppercase; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1.5px solid var(--line); background: var(--bg); border-radius: 999px; padding: 6px 14px; font-size: 0.88rem; font-weight: 600; cursor: pointer; }
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-ink); }
+.preview { border-left: 4px solid var(--accent); background: var(--soft); border-radius: 0 10px 10px 0; padding: 14px 18px; display: grid; gap: 2px; }
+.preview .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.preview strong { font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; line-height: 1.1; }
+
+.q-nav { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 20px; }
 
 /* Plan */
-#plan { border-top: 1px solid var(--line); background: var(--bg); scroll-margin-top: 0; }
-#plan .wrap { padding-block: 44px 56px; display: grid; gap: 32px; }
+.plan .wrap { padding-block: 40px 56px; display: grid; gap: 32px; }
 .plan-head { display: grid; gap: 14px; }
-.plan-head h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1; text-transform: uppercase; }
+.plan-head h1 { font-size: clamp(2.3rem, 6vw, 3.6rem); }
 .plan-head .intro { max-width: 68ch; }
-.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 0; }
-.facts div { display: grid; gap: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 32px; margin: 0; }
+.facts div { display: grid; }
 .facts dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.facts dd { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.facts dd { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.55rem; font-variant-numeric: tabular-nums; }
 .head-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 600; font-size: 0.9rem; text-decoration: none; color: var(--ink); }
-.btn:hover { border-color: var(--accent); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.btn.primary:hover { filter: brightness(1.06); }
 
-.guide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
-.panel h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.01em; }
+.start { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 24px; align-items: center; background: var(--accent-soft); border: 1.5px solid var(--accent); border-radius: 14px; padding: 22px 24px; }
+.start .label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent-ink); }
+.start h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); margin-block: 2px 12px; }
+.start-main { min-width: 0; }
+.start .part h4 { color: var(--accent-ink); }
+.start .btn { align-self: center; }
+@media (max-width: 860px) { .start .btn { justify-self: start; } }
+
+.guide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.panel { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.panel h3 { font-size: 1.3rem; }
 .panel.alert { border-color: var(--stop); background: var(--stop-soft); }
 .panel.alert h3 { color: var(--stop); }
 .dots li { position: relative; padding-left: 18px; }
@@ -142,7 +167,6 @@ button { font: inherit; color: inherit; }
 .rules li + li { margin-top: 10px; }
 .rules strong { display: block; }
 .rule-icon { width: 26px; height: 26px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-ink); display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; }
-
 .pain { display: grid; gap: 6px; }
 .pain-scale { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; }
 .pain-scale span { height: 30px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; font-size: 1rem; border-radius: 4px; font-variant-numeric: tabular-nums; }
@@ -154,84 +178,135 @@ button { font: inherit; color: inherit; }
 .pain-key span:nth-child(2) { color: var(--warn); text-align: center; }
 .pain-key span:nth-child(3) { color: var(--stop); text-align: right; }
 
-/* Timeline */
-.timeline { display: grid; gap: 8px; }
-.timeline-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.timeline-head h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; }
-.timeline-head p { font-size: 0.85rem; color: var(--muted); }
+.tl-title { font-size: 1.3rem; margin-bottom: -24px; }
+/* Timeline sticks to the top while scrolling through the blocks */
+.timeline { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: grid; gap: 8px; padding-block: 10px 2px; background: var(--bg); box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); }
+.timeline.stuck { box-shadow: 0 0 0 100vmax var(--bg), 0 14px 14px -14px var(--shadow); clip-path: inset(0 -100vmax -18px); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 .tl { display: grid; grid-template-columns: minmax(0, 1fr) 76px; gap: 4px; }
-.tl-bar { display: flex; gap: 3px; min-width: 0; }
-.seg { flex-basis: 0; min-width: 0; height: 44px; border: 0; border-radius: 5px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--muted); padding: 0; overflow: hidden; }
-.seg:hover { box-shadow: inset 0 0 0 2px var(--accent); color: var(--accent-ink); }
-.seg.done { background: var(--accent-soft); color: var(--accent-ink); box-shadow: none; }
+.tl-bar { display: flex; gap: 3px; min-width: 0; position: relative; }
+.seg { flex-basis: 0; min-width: 0; height: 44px; border: 0; border-radius: 5px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--muted); padding: 0; overflow: hidden; }
+.seg:hover { box-shadow: inset 0 0 0 2px var(--ink); color: var(--ink); }
+.seg.done { background: var(--soft); color: var(--muted); box-shadow: none; text-decoration: line-through; text-decoration-thickness: 1px; }
 .seg.current { background: var(--accent); color: #fff; box-shadow: none; }
-.seg.prev { background: repeating-linear-gradient(135deg, var(--surface) 0 6px, var(--bg) 6px 12px); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
-.tl-axis { position: relative; height: 18px; font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.seg.prev { background: repeating-linear-gradient(135deg, var(--bg) 0 6px, var(--soft) 6px 12px); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.seg.viewing { background: var(--accent-soft); color: var(--accent-ink); box-shadow: inset 0 0 0 2px var(--accent); text-decoration: none; }
+.seg.current.viewing { background: var(--accent); color: #fff; box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 4px #fff; }
+.tl-axis { position: relative; height: 34px; font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .tl-axis span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
 .tl-axis span.first { transform: none; }
 .tl-axis span.last { transform: translateX(-100%); }
+.tl-axis span.today { top: 16px; color: var(--accent-ink); font-weight: 700; }
+.tl-axis span.today::before { content: "▲ "; }
 
-/* Blocks */
 .blocks { display: grid; gap: 18px; }
-.block { display: grid; grid-template-columns: 170px minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; scroll-margin-top: 16px; }
+.earlier { border: 1px dashed var(--line); border-radius: 14px; padding: 4px 18px; }
+.earlier[open] { padding-bottom: 18px; }
+.earlier summary { cursor: pointer; padding: 12px 0; font-weight: 600; color: var(--muted); }
+.earlier .blocks { margin-top: 6px; }
+.block { display: grid; grid-template-columns: minmax(0, 1fr); background: var(--bg); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; scroll-margin-top: calc(var(--sticky-h, 0px) + 16px); }
 .block.current { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-.block-side { padding: 22px 20px; border-right: 1px solid var(--line); display: grid; gap: 10px; align-content: start; background: var(--bg); }
+.block-side { padding: 14px 24px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; background: var(--soft); }
 .block.current .block-side { background: var(--accent-soft); }
-.days { display: grid; line-height: 1; }
+.days { display: grid; gap: 3px; line-height: 1; }
 .days-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.days-num { font-family: var(--font-display); font-weight: 700; font-size: 2.9rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.block-count { font-size: 0.8rem; color: var(--muted); }
-.here { justify-self: start; border: 1.5px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
-.here:hover { border-color: var(--accent); }
-.here[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.days-num { font-family: var(--font-display); font-weight: 700; font-size: 2.2rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.block-count { font-size: 0.85rem; color: var(--muted); padding-left: 20px; border-left: 1px solid var(--line); line-height: 1.6; }
+.here { margin-left: auto; white-space: nowrap; border: 1.5px solid var(--line); background: var(--bg); border-radius: 999px; padding: 5px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+.here:hover { border-color: var(--ink); }
+.badge { margin-left: auto; white-space: nowrap; background: var(--accent); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; }
 .block-main { padding: 22px 24px 24px; display: grid; gap: 18px; min-width: 0; }
-.block-main h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.75rem; line-height: 1.05; text-transform: uppercase; }
+.block-main h3 { font-size: 1.75rem; line-height: 1.05; }
 .part { display: grid; gap: 8px; min-width: 0; }
 .part h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
 .feel li { position: relative; padding-left: 28px; }
 .feel li + li { margin-top: 6px; }
 .feel li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--ok); background: var(--ok-soft); }
 .feel li::after { content: ""; position: absolute; left: 6px; top: calc(0.2em + 4px); width: 5px; height: 8px; border: solid var(--ok); border-width: 0 2px 2px 0; transform: rotate(45deg); }
-
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
 table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
-th { text-align: left; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); background: var(--bg); padding: 9px 14px; border-bottom: 1px solid var(--line); }
+th { text-align: left; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); background: var(--soft); padding: 9px 14px; border-bottom: 1px solid var(--line); }
 td { padding: 11px 14px; vertical-align: top; border-bottom: 1px solid var(--line); }
 tr:last-child td { border-bottom: 0; }
-td.ex { font-weight: 600; width: 26%; }
-td.sets { width: 22%; font-variant-numeric: tabular-nums; }
+td.ex { font-weight: 600; width: 22%; }
+td.sets { width: 18%; font-variant-numeric: tabular-nums; }
 td.desc { color: var(--muted); }
-.watch { display: inline-block; margin-top: 4px; font-size: 0.8rem; font-weight: 600; color: var(--accent-ink); }
+td.demo { width: 168px; }
+.video-ph { width: 100%; aspect-ratio: 16 / 9; max-width: 100%; border: 1.5px dashed var(--lig-edge); border-radius: 8px; background: var(--soft); color: var(--muted); display: grid; place-content: center; justify-items: center; gap: 4px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+.video-ph svg { width: 24px; height: 24px; }
+.video-na { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-align: center; padding: 10px 8px; border-radius: 8px; background: var(--soft); }
+td.demo video { width: 100%; max-width: 100%; border-radius: 8px; display: block; background: #000; }
 
-/* Grade III */
 .stop-banner { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; background: var(--stop-soft); border: 1.5px solid var(--stop); border-radius: 14px; padding: 22px 24px; }
 .stop-banner .sign { width: 52px; height: 52px; }
 .stop-banner .sign polygon { fill: var(--stop); }
 .stop-banner .sign rect { fill: var(--stop-soft); }
 .stop-banner strong { display: block; font-family: var(--font-display); font-weight: 700; font-size: 2rem; line-height: 1; text-transform: uppercase; color: var(--stop); }
-.g3-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.g3-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
 
-/* Footer */
-.site-foot { border-top: 1px solid var(--line); background: var(--surface); }
-.site-foot .wrap { padding-block: 32px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; font-size: 0.88rem; color: var(--muted); }
-.site-foot h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.02em; }
+.info .wrap { padding-block: 32px 56px; display: grid; gap: 28px; justify-items: start; max-width: 760px; }
+.info-sec { display: grid; gap: 12px; }
+.info-sec h1 { font-size: clamp(2.2rem, 5.5vw, 3.2rem); }
+.info-sec h2 { font-size: 1.8rem; }
+.how { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+.how strong { display: block; }
+.info-note { color: var(--muted); font-size: 0.92rem; border-left: 3px solid var(--line); padding-left: 14px; }
+.library .wrap { padding-block: 32px 56px; display: grid; gap: 24px; justify-items: start; }
+.lib-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 14px 24px; width: 100%; }
+.lib-head h1 { font-size: clamp(2.2rem, 5.5vw, 3.2rem); }
+.lib-tools { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+#lib-search { width: min(320px, 100%); border: 1.5px solid var(--line); border-radius: 999px; padding: 9px 16px; background: var(--bg); }
+#lib-search:focus { outline: none; border-color: var(--accent); }
+.lib-count { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; width: 100%; }
+.lib-card { border: 1px solid var(--line); border-radius: 14px; padding: 14px 14px 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.lib-card h3 { font-size: 1.4rem; line-height: 1.05; }
+.lib-card p { font-size: 0.92rem; color: var(--muted); }
+.lib-card video { width: 100%; border-radius: 8px; display: block; background: #000; }
+.uses { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.uses-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-right: 2px; }
+.use { border: 1.5px solid var(--line); background: var(--bg); border-radius: 999px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.15s; }
+.use:hover { border-color: var(--accent); color: var(--accent-ink); transform: translateY(-2px) scale(1.05); box-shadow: 0 6px 14px var(--shadow); }
+.lib-empty { color: var(--muted); }
 .sources li + li { margin-top: 6px; }
 
+/* Loading screen */
+.loading { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.loading-inner { display: grid; justify-items: center; gap: 14px; text-align: center; padding-block: 48px; }
+.ball-wrap { height: 120px; display: grid; justify-items: center; align-content: end; }
+.loading-ball { width: 88px; height: 88px; transform-origin: 50% 100%; animation: logo-hop 0.55s ease-out infinite alternate; }
+.loading-shadow { width: 50px; height: 9px; margin-top: 4px; border-radius: 50%; background: var(--shadow); animation: ball-shadow 0.6s ease-out infinite alternate; }
+@keyframes logo-hop { 0% { transform: translateY(0) scale(1.06, 0.94); } 25% { transform: translateY(-8px) scale(1); } 100% { transform: translateY(-30px) scale(1); } }
+@keyframes ball-shadow { from { transform: scaleX(1); opacity: 1; } to { transform: scaleX(0.55); opacity: 0.45; } }
+.loading h1 { font-size: clamp(2.2rem, 6.5vw, 3.6rem); }
+#loading-step { color: var(--muted); min-height: 1.6em; }
+.loading-bar { width: min(300px, 70vw); height: 6px; background: var(--soft); border-radius: 999px; overflow: hidden; }
+.loading-bar span { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 999px; }
+
+/* Hover pop for every button */
+.btn, .opt, .chip, .here, .seg, .stepper button { transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.15s, background 0.15s, color 0.15s; }
+@media (hover: hover) {
+  .btn:hover:not(:disabled), .chip:hover, .here:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 6px 16px var(--shadow); }
+  .btn.big:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 10px 24px var(--shadow); }
+  .opt:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 24px var(--shadow); }
+  .seg:hover { transform: translateY(-3px); box-shadow: 0 6px 14px var(--shadow), inset 0 0 0 2px var(--ink); }
+  .seg.current:hover, .seg.done:hover { box-shadow: 0 6px 14px var(--shadow); }
+  .stepper button:hover { transform: scale(1.12); }
+}
+.btn:active:not(:disabled), .chip:active, .here:active, .opt:active, .seg:active { transform: scale(0.97); box-shadow: none; }
+
 @media (max-width: 860px) {
-  .selector { grid-template-columns: minmax(0, 1fr); padding: 20px; gap: 20px; }
-  .diagram { position: static; }
-  .diagram svg { max-width: 240px; }
-  .guide, .g3-grid, .site-foot .wrap { grid-template-columns: minmax(0, 1fr); }
+  .q1-body, .guide, .g3-grid { grid-template-columns: minmax(0, 1fr); }
+  .diagram svg { max-width: 360px; }
+  .options.row { grid-template-columns: minmax(0, 1fr); }
+  .start { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 640px) {
-  .options { grid-template-columns: minmax(0, 1fr); }
-  .head-note { display: none; }
-  .block { grid-template-columns: minmax(0, 1fr); }
-  .block-side { border-right: 0; border-bottom: 1px solid var(--line); grid-template-columns: minmax(0, 1fr) auto; align-items: end; padding: 16px 18px; }
-  .block-side .days { grid-column: 1; }
-  .block-side .block-count { grid-column: 1; }
-  .block-side .here { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-  .days-num { font-size: 2.3rem; }
+  .main-nav { width: 100%; gap: 4px 18px; }
+  .main-nav a { font-size: 0.85rem; }
+  .block-side { padding: 12px 18px; gap: 6px 14px; }
+  .block-count { padding-left: 14px; }
+  .days-num { font-size: 1.9rem; }
   .block-main { padding: 18px; }
   .table-wrap { border: 0; border-radius: 0; overflow: visible; }
   table, tbody, tr, td { display: block; width: auto !important; }
@@ -239,94 +314,136 @@ td.desc { color: var(--muted); }
   tr { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; }
   tr + tr { margin-top: 8px; }
   td { padding: 0; border: 0; }
+  td.demo { margin-top: 8px; max-width: 360px; }
   td.sets { justify-self: start; font-size: 0.8rem; font-weight: 600; background: var(--accent-soft); color: var(--accent-ink); padding: 2px 8px; border-radius: 999px; }
   .tl { grid-template-columns: minmax(0, 1fr) 52px; }
   .seg { height: 38px; font-size: 0.95rem; }
   .seg.prev { font-size: 0.65rem; }
+  .q-nav .btn { flex: 1; }
 }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
-<header class="site-head">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 40 40"><path d="M11.5 2 C11 10 10.5 18 11 24 C10 27 9.5 31 11.5 33 C12.8 34.3 14.5 34.6 16 34.6 L33.5 34.6 C36 34.6 37.5 33.6 37.5 31.8 C37.5 30 36.2 29 34.5 28.4 C29 26.5 23.5 24.5 20.5 21.5 C19.6 20.6 19.3 19.4 19.3 18 L19 2" fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><g fill="#e0581f" stroke="#ffffff" stroke-width="1.3" paint-order="stroke" stroke-linejoin="round"><path d="M14.3 16.4 h2.6 v2.3 h2.3 v2.6 h-2.3 v2.3 h-2.6 v-2.3 h-2.3 v-2.6 h2.3 Z"/></g></symbol>
+</svg>
+
+<header class="site-head" id="site-head">
   <div class="wrap">
-    <div class="brand">
-      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13" fill="var(--accent)"/><path d="M2 15h26M15 2v26M5.5 6c4 3 4 15 0 18M24.5 6c-4 3-4 15 0 18" fill="none" stroke="var(--surface)" stroke-width="1.6"/></svg>
-      Back on Court
-    </div>
-    <p class="head-note">Ankle sprain rehab for basketball players</p>
+    <a class="brand display" href="#home" data-nav="home"><svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg>Rebound</a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#library" data-nav="library">Exercise library</a>
+      <a href="#about" data-nav="about">About Rebound</a>
+      <a href="#reference" data-nav="reference">Reference</a>
+    </nav>
   </div>
+  <div class="head-progress" id="head-progress" role="progressbar" aria-label="Survey progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" hidden><span id="progress-fill" style="width:33%"></span></div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-intro">
-        <p class="eyebrow">Sprained your ankle?</p>
-        <h1>Pick your sprain. Get your plan.</h1>
-        <p class="lede">Choose where your ankle hurts and how bad it is. You'll get a day-by-day rehab plan with the exercises to do, how your ankle should feel before each step, and when it's safe to play again.</p>
-        <p class="disclaimer">This site is a student project for education, not medical advice. If you can't take four steps on the injured foot, see a doctor before starting any plan.</p>
+<!-- Landing -->
+<section class="home" id="view-home">
+  <div class="home-inner">
+    <svg class="home-logo" viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg>
+    <h1 class="home-title display">Rebound</h1>
+    <p class="home-desc">Day-by-day rehab plans for basketball players with a sprained ankle. Answer three quick questions to get yours.</p>
+    <button type="button" class="btn primary big" data-nav="survey">Get my plan</button>
+  </div>
+  <p class="home-foot">A student project for education, not medical advice.</p>
+</section>
+
+
+<!-- Survey -->
+<main class="survey" id="view-survey" hidden>
+  <div class="wrap">
+    <section class="q" id="q1">
+      <div class="q-head">
+        <h1 class="display">Where does it hurt?</h1>
       </div>
-
-      <div class="selector">
-        <figure class="diagram" style="margin:0">
-          <svg viewBox="0 0 320 384" role="group" aria-label="Ankle diagram. Choose the injured area.">
-            <path class="foot" d="M62 288 Q165 270 252 288 L264 340 Q165 360 52 340 Z"/>
-            <path class="bone" d="M78 8 L96 8 L98 205 Q106 238 100 262 Q90 275 79 263 Q72 238 77 205 Z"/>
-            <path class="bone" d="M116 8 L206 8 L208 180 Q214 200 228 208 L230 244 Q224 255 213 249 L209 226 L120 226 Q110 218 112 198 Z"/>
-            <path class="bone" d="M118 232 Q165 214 210 232 L212 272 Q165 285 114 272 Z"/>
-
-            <g class="lig-group" data-lig="high-ankle" tabindex="0" role="button" aria-label="High ankle sprain">
-              <rect class="hit" x="0" y="150" width="125" height="72"/>
-              <path class="lig" stroke-width="5" d="M98 180 L113 174 M99 194 L113 190 M100 208 L114 206"/>
-              <line class="leader" x1="62" y1="166" x2="94" y2="186"/>
-              <text class="lig-label" x="8" y="164">High ankle</text>
-            </g>
-            <g class="lig-group" data-lig="lateral" tabindex="0" role="button" aria-label="Lateral (outer) sprain">
-              <rect class="hit" x="0" y="230" width="130" height="80"/>
-              <path class="lig" stroke-width="7" d="M97 252 L121 262 M87 270 L93 302"/>
-              <line class="leader" x1="58" y1="252" x2="84" y2="262"/>
-              <text class="lig-label" x="8" y="250">Lateral</text>
-            </g>
-            <g class="lig-group" data-lig="medial" tabindex="0" role="button" aria-label="Medial (inner) sprain">
-              <rect class="hit" x="194" y="214" width="126" height="96"/>
-              <path class="lig" stroke-width="7" d="M219 250 L204 270 M221 252 L222 300 M224 250 L241 296"/>
-              <line class="leader" x1="262" y1="236" x2="234" y2="252"/>
-              <text class="lig-label" x="258" y="230">Medial</text>
-            </g>
-
-            <text class="side-label" x="56" y="374">OUTER</text>
-            <text class="side-label" x="266" y="374" text-anchor="end">INNER</text>
-          </svg>
-          <figcaption>Right ankle from the front. Tap the hurt area.</figcaption>
+      <div class="q1-body">
+        <figure class="diagram">
+          <svg viewBox="0 0 440 540" role="group" aria-label="Ankle diagram. Choose the injured area."><defs><linearGradient id="boneG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cdb486"/><stop offset="0.42" stop-color="#f7eedb"/><stop offset="1" stop-color="#c9ae80"/></linearGradient><radialGradient id="boneR" cx="0.42" cy="0.38" r="0.75"><stop offset="0" stop-color="#faf3e4"/><stop offset="1" stop-color="#cfb68a"/></radialGradient><filter id="shade" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="2.2" flood-color="#4a3b22" flood-opacity="0.28"/></filter></defs><text class="side-label" x="16" y="24">OUTER</text><text class="side-label" x="424" y="24" text-anchor="end">INNER</text><g filter="url(#shade)"><ellipse class="bone" fill="url(#boneR)" cx="162" cy="318" rx="30" ry="22" transform="rotate(-10 162 318)"/><path class="bone" fill="url(#boneG)" d="M 144.0 6.0 C 148.0 80.0 153.0 150.0 156.0 200.0 C 159.0 232.0 156.0 258.0 150.0 278.0 C 144.0 292.0 130.0 292.0 126.0 278.0 C 122.0 256.0 129.0 226.0 134.0 198.0 C 138.0 140.0 138.0 70.0 132.0 6.0 Z"/><path class="bone" fill="url(#boneG)" d="M 190.0 6.0 C 187.0 80.0 185.0 150.0 181.0 198.0 C 178.0 218.0 180.0 232.0 190.0 240.0 C 220.0 233.0 254.0 233.0 280.0 238.0 C 286.0 248.0 290.0 260.0 298.0 268.0 C 308.0 271.0 314.0 260.0 312.0 244.0 C 310.0 222.0 302.0 202.0 284.0 182.0 C 278.0 120.0 278.0 60.0 276.0 6.0 Z"/><path class="bone" fill="url(#boneR)" d="M 190.0 244.0 C 218.0 234.0 254.0 234.0 280.0 244.0 C 288.0 258.0 288.0 276.0 280.0 288.0 C 270.0 300.0 254.0 306.0 238.0 306.0 C 220.0 306.0 204.0 300.0 194.0 290.0 C 184.0 278.0 184.0 258.0 190.0 244.0 Z"/><ellipse class="bone" fill="url(#boneR)" cx="200" cy="336" rx="24" ry="19" transform="rotate(8 200 336)"/><ellipse class="bone" fill="url(#boneR)" cx="238" cy="350" rx="13" ry="13" transform="rotate(0 238 350)"/><ellipse class="bone" fill="url(#boneR)" cx="262" cy="351" rx="12" ry="12" transform="rotate(0 262 351)"/><ellipse class="bone" fill="url(#boneR)" cx="288" cy="347" rx="16" ry="14" transform="rotate(-10 288 347)"/><ellipse class="bone" fill="url(#boneR)" cx="262" cy="318" rx="36" ry="14" transform="rotate(-8 262 318)"/><path class="bone" fill="url(#boneR)" d="M276.5 368.6 Q302.9 408.9 320.3 453.7 A13 13 0 0 0 343.7 442.3 Q319.1 401.1 303.5 355.4 A15 15 0 0 0 276.5 368.6 Z"/><path class="bone" fill="url(#boneR)" d="M253.4 368.7 Q270.7 412.6 281.9 458.5 A8.5 8.5 0 0 0 298.1 453.5 Q281.3 409.4 270.6 363.3 A9 9 0 0 0 253.4 368.7 Z"/><path class="bone" fill="url(#boneR)" d="M231.6 369.5 Q243.1 414.9 248.1 461.4 A8 8 0 0 0 263.9 458.6 Q252.9 413.1 248.4 366.5 A8.5 8.5 0 0 0 231.6 369.5 Z"/><path class="bone" fill="url(#boneR)" d="M210.0 366.4 Q215.0 410.2 214.5 454.3 A7.5 7.5 0 0 0 229.5 453.7 Q225.0 409.8 226.0 365.6 A8 8 0 0 0 210.0 366.4 Z"/><path class="bone" fill="url(#boneR)" d="M186.0 355.1 Q187.0 399.5 180.5 443.3 A7.5 7.5 0 0 0 195.5 444.7 Q197.0 400.5 206.0 356.9 A10 10 0 0 0 186.0 355.1 Z"/><path class="bone" fill="url(#boneR)" d="M323.6 459.7 Q332.5 475.7 336.6 493.3 A10 10 0 0 0 355.4 486.7 Q347.5 470.3 344.4 452.3 A11 11 0 0 0 323.6 459.7 Z"/><path class="bone" fill="url(#boneR)" d="M338.4 500.6 Q344.2 510.8 346.3 522.1 A8 8 0 0 0 361.7 517.9 Q357.8 507.2 357.6 495.4 A10 10 0 0 0 338.4 500.6 Z"/><path class="bone" fill="url(#boneR)" d="M285.2 465.7 Q290.6 477.1 291.7 489.6 A6.5 6.5 0 0 0 304.3 486.4 Q299.4 474.9 298.8 462.3 A7 7 0 0 0 285.2 465.7 Z"/><path class="bone" fill="url(#boneR)" d="M293.1 495.3 Q296.6 501.8 296.6 509.2 A5.5 5.5 0 0 0 307.4 506.8 Q304.4 500.2 304.9 492.7 A6 6 0 0 0 293.1 495.3 Z"/><path class="bone" fill="url(#boneR)" d="M298.0 513.6 Q299.5 517.9 299.5 522.5 A4.5 4.5 0 0 0 308.5 521.5 Q307.5 517.1 308.0 512.4 A5 5 0 0 0 298.0 513.6 Z"/><path class="bone" fill="url(#boneR)" d="M250.6 468.9 Q254.5 479.5 254.1 490.8 A6 6 0 0 0 265.9 489.2 Q262.5 478.5 263.4 467.1 A6.5 6.5 0 0 0 250.6 468.9 Z"/><path class="bone" fill="url(#boneR)" d="M255.5 496.4 Q257.7 502.8 257.0 509.4 A5 5 0 0 0 267.0 508.6 Q265.3 502.2 266.5 495.6 A5.5 5.5 0 0 0 255.5 496.4 Z"/><path class="bone" fill="url(#boneR)" d="M257.5 514.0 Q258.5 518.0 258.0 522.0 A4 4 0 0 0 266.0 522.0 Q265.5 518.0 266.5 514.0 A4.5 4.5 0 0 0 257.5 514.0 Z"/><path class="bone" fill="url(#boneR)" d="M217.0 462.0 Q219.0 473.0 217.5 484.0 A5.5 5.5 0 0 0 228.5 484.0 Q227.0 473.0 229.0 462.0 A6 6 0 0 0 217.0 462.0 Z"/><path class="bone" fill="url(#boneR)" d="M218.0 489.6 Q218.9 495.7 217.2 501.6 A4.8 4.8 0 0 0 226.8 502.4 Q226.1 496.3 228.0 490.4 A5 5 0 0 0 218.0 489.6 Z"/><path class="bone" fill="url(#boneR)" d="M217.5 506.4 Q218.0 510.6 217.0 514.5 A4 4 0 0 0 225.0 515.5 Q225.0 511.4 226.5 507.6 A4.5 4.5 0 0 0 217.5 506.4 Z"/><path class="bone" fill="url(#boneR)" d="M181.6 450.9 Q181.3 461.3 178.1 471.0 A5 5 0 0 0 187.9 473.0 Q188.7 462.7 192.4 453.1 A5.5 5.5 0 0 0 181.6 450.9 Z"/><path class="bone" fill="url(#boneR)" d="M177.3 477.1 Q177.6 482.3 175.6 487.1 A4.5 4.5 0 0 0 184.4 488.9 Q184.4 483.7 186.7 478.9 A4.8 4.8 0 0 0 177.3 477.1 Z"/><path class="bone" fill="url(#boneR)" d="M175.0 492.4 Q175.3 496.0 174.2 499.5 A3.8 3.8 0 0 0 181.8 500.5 Q181.7 497.0 183.0 493.6 A4 4 0 0 0 175.0 492.4 Z"/></g><g class="lig-group" data-lig="high-ankle" tabindex="0" role="button" aria-label="High ankle sprain"><rect class="hit" x="0" y="150" width="190" height="88"/><path class="lig-o" d="M156 214 L186 202 M157 232 L188 222" stroke-width="12"/><path class="lig-f" d="M156 214 L186 202 M157 232 L188 222" stroke-width="8"/><line class="leader" x1="96" y1="180" x2="166" y2="212"/><text class="lig-label" x="8" y="176">High ankle</text></g><g class="lig-group" data-lig="lateral" tabindex="0" role="button" aria-label="Lateral (outer) sprain"><rect class="hit" x="0" y="240" width="200" height="96"/><path class="lig-o" d="M154 262 L196 280 M142 284 L154 320" stroke-width="14"/><path class="lig-f" d="M154 262 L196 280 M142 284 L154 320" stroke-width="10"/><line class="leader" x1="72" y1="266" x2="140" y2="296"/><text class="lig-label" x="8" y="262">Lateral</text></g><g class="lig-group" data-lig="medial" tabindex="0" role="button" aria-label="Medial (inner) sprain"><rect class="hit" x="268" y="228" width="172" height="104"/><path class="lig-o" d="M296 262 L274 288 M298 264 L284 318 M300 264 L308 306" stroke-width="13"/><path class="lig-f" d="M296 262 L274 288 M298 264 L284 318 M300 264 L308 306" stroke-width="9"/><line class="leader" x1="352" y1="258" x2="306" y2="284"/><text class="lig-label" x="350" y="250">Medial</text></g></svg>
         </figure>
-
-        <div class="steps">
-          <div class="step" id="step-lig">
-            <div class="step-head"><span class="step-num">1</span><h2>Where does it hurt?</h2></div>
-            <div class="options" id="lig-options"></div>
-          </div>
-          <div class="step locked" id="step-grade">
-            <div class="step-head"><span class="step-num">2</span><h2>How bad is it?</h2></div>
-            <div class="options" id="grade-options"></div>
-            <p class="step-hint" id="grade-hint">Choose where it hurts first.</p>
-          </div>
-        </div>
+        <div class="options" id="lig-options"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="plan" hidden aria-live="polite"><div class="wrap" id="plan-body"></div></section>
+    <section class="q" id="q2" hidden>
+      <div class="q-head">
+        <h1 class="display">How bad is it?</h1>
+      </div>
+      <div class="options row" id="grade-options"></div>
+      <p class="q-note">Not sure? Choose the higher grade. Its plan moves more slowly, and the checks in each block let you move ahead when you're ready.</p>
+    </section>
+
+    <section class="q" id="q3" hidden>
+      <div class="q-head">
+        <h1 class="display">When did it happen?</h1>
+      </div>
+      <div class="days-box">
+        <div class="days-row">
+          <div class="stepper">
+            <button type="button" id="days-minus" aria-label="One day fewer">−</button>
+            <input id="days-input" type="number" inputmode="numeric" min="0" max="365" placeholder="0" aria-label="Days since injury">
+            <button type="button" id="days-plus" aria-label="One day more">+</button>
+          </div>
+          <span class="days-unit">days ago</span>
+        </div>
+        <div class="chips" id="days-chips"></div>
+        <div class="preview" id="days-preview" hidden></div>
+      </div>
+    </section>
+
+    <div class="q-nav">
+      <button type="button" class="btn" id="btn-back">Back</button>
+      <button type="button" class="btn primary" id="btn-next" disabled>Next</button>
+    </div>
+  </div>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap">
-    <div>
-      <h2>About this site</h2>
-      <p>Back on Court is an MYP Personal Project. The plans are based on published sports medicine rehab protocols and research reviews, and they use typical recovery times. Every ankle heals at its own pace, so the "How you should feel" checks decide when to move on, not the calendar. This site does not replace a doctor, physiotherapist, or athletic trainer.</p>
+<!-- Loading -->
+<section class="loading" id="view-loading" hidden>
+  <div class="loading-inner">
+    <div class="ball-wrap" aria-hidden="true">
+      <svg class="loading-ball" viewBox="0 0 40 40"><use href="#logo"/></svg>
+      <div class="loading-shadow"></div>
     </div>
-    <div>
-      <h2>Sources</h2>
+    <h1 class="display" id="loading-title">Generating your plan</h1>
+    <p id="loading-step" role="status" aria-live="polite">Matching your injury…</p>
+    <div class="loading-bar"><span id="loading-fill"></span></div>
+  </div>
+</section>
+
+<!-- Plan -->
+<main class="plan" id="view-plan" hidden aria-live="polite"><div class="wrap" id="plan-body"></div></main>
+
+<!-- About -->
+<main class="info" id="view-about" hidden>
+  <div class="wrap">
+    <button type="button" class="btn" data-action="back">← Back</button>
+    <section class="info-sec">
+      <h1 class="display">About Rebound</h1>
+      <p>Rebound is an MYP Personal Project. It gives basketball players with a sprained ankle a day-by-day rehab plan that matches their injury.</p>
+      <p>The plans are based on published sports medicine rehab protocols and research reviews, and they use typical recovery times. Every ankle heals at its own pace, so the "How you should feel" checks decide when to move on, not the calendar.</p>
+    </section>
+    <section class="info-sec">
+      <h2 class="display">How it works</h2>
+      <ol class="how">
+        <li><strong>Pick your sprain.</strong> Choose the injured area and the grade.</li>
+        <li><strong>Tell us when it happened.</strong> Your plan starts at the block that matches your recovery day.</li>
+        <li><strong>Follow the blocks.</strong> Move on only when you match the next block's "How you should feel" list.</li>
+      </ol>
+    </section>
+    <p class="info-note">Rebound does not replace a doctor, physiotherapist, or athletic trainer. Grade III sprains always need a professional.</p>
+  </div>
+</main>
+
+<!-- Reference -->
+<main class="info" id="view-reference" hidden>
+  <div class="wrap">
+    <button type="button" class="btn" data-action="back">← Back</button>
+    <section class="info-sec">
+      <h1 class="display">Reference</h1>
       <ul class="sources dots">
         <li>Massachusetts General Hospital Sports Medicine: Ankle sprain rehabilitation protocol</li>
         <li>SB Ortho: Lateral ankle sprain rehabilitation protocol</li>
@@ -335,22 +452,53 @@ td.desc { color: var(--muted); }
         <li>Vuurberg G. et al. (2018). Diagnosis, treatment and prevention of ankle sprains. British Journal of Sports Medicine.</li>
         <li>Doherty C. et al. (2017). Treatment and prevention of acute and recurrent ankle sprain. British Journal of Sports Medicine.</li>
       </ul>
-    </div>
+    </section>
   </div>
-</footer>
+</main>
+
+<!-- Exercise library -->
+<main class="library" id="view-library" hidden>
+  <div class="wrap">
+    <button type="button" class="btn" data-action="back">← Back</button>
+    <div class="lib-head">
+      <h1 class="display">Exercise library</h1>
+      <div class="lib-tools">
+        <input type="search" id="lib-search" placeholder="Search exercises" aria-label="Search exercises">
+        <span class="lib-count" id="lib-count"></span>
+      </div>
+    </div>
+    <div class="lib-grid" id="lib-grid"></div>
+  </div>
+</main>
+
 
 <script id="plan-data" type="application/json">{"lateral": {"1": {"title": "Grade I Lateral Ankle Sprain", "intro": "This plan is for a Grade I lateral ankle sprain (the outer ankle ligaments are stretched, with only microscopic tears). Most athletes can walk on it and return to sport in about 1 to 2 weeks.", "red": ["You cannot take four steps on the injured foot, or there is tenderness on the bony edges of the ankle or foot (Ottawa Ankle Rules).", "Swelling or pain is getting worse after the first 3 days instead of better.", "Numbness, tingling, or the foot turning cold or pale.", "The ankle feels loose or gives way when you walk. That suggests a more serious sprain."], "blocks": [{"start": 1, "end": 2, "name": "Protect and calm the ankle", "feel": ["The outer ankle is a little swollen and tender to touch.", "You can walk, possibly with a slight limp."], "rows": [["Ankle pumps", "2 x 15 to 20, every 2 to 3 hours while awake", "Lie or sit with the leg raised. Point the toes away, then pull them toward you, moving only at the ankle. Keeps blood moving and reduces swelling."], ["Ankle alphabet", "1 round, 3 times a day", "Trace A to Z in the air with the big toe, using letters that stay pain-free. Avoid pushing the foot inward."], ["Towel scrunches", "2 x 10, twice a day", "Seated, curl the toes to pull a towel toward you. Keeps the small foot muscles working."], ["Weight shifts", "3 x 10 each side", "Stand holding a counter and slowly shift weight from foot to foot, putting more weight on the injured side each day."], ["Glute bridges", "3 x 12, once a day", "Lie on your back with knees bent and push the hips up. Keep the injured foot flat and the pressure light."]], "notes": ["Ice for 15 to 20 minutes, 3 to 4 times a day, with a cloth between the ice and skin.", "Wear a compression wrap and raise the ankle above the heart when resting.", "Wear a brace or tape when walking. Crutches are usually not needed.", "Avoid heat, hot baths, massage, and alcohol for the first 2 days, since they can increase swelling."]}, {"start": 3, "end": 5, "name": "Start loading the ankle", "feel": ["Swelling is going down and you walk with little or no limp."], "rows": [["Isometric ankle presses", "5 x 10 sec hold, each of 4 directions", "Sit and press the foot into a wall or your other foot (outward, inward, up, down) without the ankle moving."], ["Band eversion", "3 x 10 to 15, light band", "Seated, loop the band around the forefoot and anchor it to the inside. Turn the foot outward and return slowly. Strengthens the peroneal muscles that protect the outer ankle."], ["Band dorsiflexion and plantarflexion", "3 x 15 each, light band", "Push the foot down against the band, then anchor the band in front and pull the foot up toward you."], ["Double-leg heel raises", "3 x 15", "Stand holding a wall, rise onto the toes, and lower slowly over 3 seconds."], ["Single-leg balance (eyes open)", "3 x 15 to 30 sec", "Start once standing on the injured leg is comfortable. Stand next to a wall on a firm floor."], ["Towel calf stretch", "3 x 30 sec", "Sit with the leg straight, loop a towel around the ball of the foot, and pull gently until you feel a stretch in the calf."], ["Stationary bike", "10 to 15 min, easy", "Keeps your fitness without impact."]], "notes": ["Ice after exercise if the ankle swells.", "Keep the brace or tape on for long walks and stairs."]}, {"start": 6, "end": 9, "name": "Strength and balance", "feel": ["Walking and stairs are pain-free.", "The ankle moves almost as far as the other side."], "rows": [["Band eversion", "3 x 15, medium band", "Same as before with a thicker band. Move up a band when 15 reps feel easy."], ["Band inversion", "3 x 15, light to medium band", "Anchor the band to the outside and turn the foot inward, staying in a pain-free range."], ["Single-leg heel raises", "3 x 10 to 20", "Hold a wall and rise on the injured leg only, lowering slowly. Work toward 25 in a row."], ["Knee-to-wall stretch", "2 x 10", "Face a wall with the heel down and push the knee forward to touch the wall. Move the foot back as it gets easier. Restores the ankle bend you need for squatting and jumping."], ["Single-leg balance on a pillow", "3 x 30 sec", "Stand on a pillow or foam pad on the injured leg. Add catching a ball once it is easy."], ["Balance board", "3 x 30 to 60 sec", "Both feet first, then the injured leg only. Hold the board level, then tilt side to side with control."], ["Star excursion reach", "3 rounds", "Balance on the injured leg and reach the other foot forward, sideways, and backward as far as you can, tapping lightly."], ["Stationary bike or brisk walk", "15 to 20 min", "Steady pace, pain-free."]], "notes": ["Ice is usually no longer needed.", "Wear the brace for any sport-related activity."]}, {"start": 10, "end": 12, "name": "Hopping, running, and agility", "feel": ["You can do 25 single-leg heel raises in a row, or as many as on the uninjured side.", "Balance on the injured leg is about equal to the other side."], "rows": [["Pogo hops", "3 x 20 sec, days 10 and 12", "Small, quick hops on the balls of both feet with soft knees."], ["Line hops", "3 x 10 each direction, days 10 and 12", "Hop over a tape line forward and back, then side to side. Start on both legs, then the injured leg only."], ["Single-leg hop and stick", "3 x 6 per leg, days 10 and 12", "Hop forward on the injured leg and hold the landing for 2 seconds with the knee over the toes."], ["Jogging", "15 to 20 min, day 11", "Steady jog on flat ground. Straight lines only."], ["Defensive slides", "3 x 20 sec", "Low basketball defensive stance, sliding side to side without crossing the feet."], ["Figure-8 and cutting drills", "3 to 5 reps each, day 12", "Run figure-8s around two markers, then practice 45 and 90 degree cuts at 50 to 75% speed."], ["Strength and balance maintenance", "Daily", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Wear the brace or tape for all hopping and agility work.", "Stop and drop back a block if pain goes above 3 out of 10 or swelling appears the next morning."]}, {"start": 13, "end": 14, "name": "Return to basketball", "feel": ["You can hop, jog, and cut without pain or a feeling that the ankle will give way."], "rows": [["Full-speed cutting drills", "3 to 5 reps each", "Cuts, sprints, and direction changes at full speed."], ["Basketball-specific drills", "20 to 30 min", "Layups, rebounding jumps, defensive closeouts, and shooting off the dribble, without contact."], ["Team practice", "Day 14", "Join practice, starting with drills and adding contact if drills go well."], ["Strength and balance maintenance", "Every other day", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Day 14 return-to-play test. Pass all of these: 25 single-leg heel raises; star excursion reach and single-leg hop distance at 90% or more of the uninjured side; no pain or swelling after cutting and jumping.", "If you pass, return to games with a brace or tape. If not, repeat days 13 to 14."]}, {"start": 15, "end": null, "name": "Prevent the next sprain", "feel": ["You are back to playing normally."], "rows": [["Balance board", "2 x 60 sec, 3 times a week", "Injured leg only, then the other leg."], ["Single-leg hop and stick", "2 x 6 per leg, 3 times a week", "Good to add to your basketball warm-up."], ["Band eversion", "2 x 15, 3 times a week", "Heavy band."], ["Single-leg heel raises", "2 x 20, 3 times a week", "Both legs."]], "notes": ["The biggest risk factor for an ankle sprain is a previous sprain, so keep this 10 to 15 minute routine going for at least 3 months.", "Wear a brace or tape for basketball for at least the rest of the season."]}]}, "2": {"title": "Grade II Lateral Ankle Sprain", "intro": "This plan is for a Grade II lateral ankle sprain (a partial tear of the outer ankle ligaments).", "red": ["You cannot take four steps on the injured foot, or there is tenderness on the bony edges of the ankle or foot (Ottawa Ankle Rules).", "Swelling or pain is getting worse after the first 3 days instead of better.", "Numbness, tingling, or the foot turning cold or pale.", "The ankle still gives way during normal walking after 2 weeks."], "blocks": [{"start": 1, "end": 3, "name": "Protect and calm the ankle", "feel": ["The ankle is swollen and bruised, and putting weight on it hurts.", "You may need crutches to walk. Pain at rest should start easing by day 3."], "rows": [["Ankle pumps", "2 x 15 to 20, every 2 to 3 hours while awake", "Lie or sit with the leg raised. Point the toes away, then pull them toward you, moving only at the ankle. Keeps blood moving and reduces swelling."], ["Ankle alphabet", "1 round, 3 times a day", "Trace A to Z in the air with the big toe, using small letters that stay pain-free. Avoid pushing the foot inward."], ["Towel scrunches", "2 x 10, twice a day", "Seated, curl the toes to pull a towel toward you. Keeps the small foot muscles working."], ["Straight leg raises", "3 x 10 each direction, once a day", "Lying down, lift the straight leg forward, then to the side while lying on your side. Keeps hip strength without loading the ankle."], ["Glute bridges", "3 x 12, once a day", "Lie on your back with knees bent and push the hips up. Keep the injured foot flat and the pressure light."]], "notes": ["Ice for 15 to 20 minutes every 2 to 3 hours while awake, with a cloth between the ice and skin.", "Wear a compression wrap during the day and keep the ankle raised above the heart when resting.", "Use crutches and put only as much weight on the foot as is comfortable. Wear a lace-up brace or tape when standing.", "Avoid heat, hot baths, massage, and alcohol for the first 3 days, since they can increase swelling.", "Complete rest is not the goal: gentle, pain-free movement helps the ligament heal stronger."]}, {"start": 4, "end": 7, "name": "Start moving and walking", "feel": ["Swelling is going down and you can put most of your weight on the foot.", "You can walk short distances with a mild limp, with or without crutches."], "rows": [["Ankle pumps and alphabet", "1 round each, twice a day", "Same as days 1 to 3. The letters can get bigger as long as they stay pain-free."], ["Isometric ankle presses", "5 x 10 sec hold, each of 4 directions", "Sit and press the foot into a wall or your other foot (outward, inward, up, down) without the ankle moving. Builds strength with no joint movement."], ["Seated heel and toe raises", "3 x 15", "Seated with feet flat, lift both heels, lower, then lift the toes."], ["Towel calf stretch", "3 x 30 sec", "Sit with the leg straight, loop a towel around the ball of the foot, and pull gently until you feel a stretch in the calf."], ["Weight shifts", "3 x 10 each side", "Stand holding a counter and slowly shift weight from foot to foot, putting more weight on the injured side each day."], ["Single-leg balance (eyes open)", "3 x 15 to 30 sec", "Start once standing on the injured leg is comfortable. Stand next to a wall on a firm floor."], ["Stationary bike (optional)", "10 min, easy", "Only if pain-free. Keeps your fitness without impact."], ["Hip and core work", "Same as days 1 to 3", "Straight leg raises and glute bridges, plus a front plank for 3 x 20 sec."]], "notes": ["Ice 2 to 3 times a day and after exercise.", "Stop using crutches once you can walk without a limp.", "Keep the brace or tape on whenever you are walking around."]}, {"start": 8, "end": 14, "name": "Build basic strength", "feel": ["You walk normally without crutches and with little or no limp.", "Swelling is small, and pain only shows up at the end of ankle movements."], "rows": [["Band eversion", "3 x 10 to 15, light band", "Seated, loop the band around the forefoot and anchor it to the inside. Turn the foot outward and return slowly. The most important exercise for a lateral sprain: it strengthens the peroneal muscles that protect the outer ankle."], ["Band dorsiflexion and plantarflexion", "3 x 15 each, light band", "Push the foot down against the band, then anchor the band in front and pull the foot up toward you."], ["Band inversion", "3 x 10, light band", "Anchor the band to the outside and turn the foot inward, staying in a pain-free range. Add this only once eversion feels easy."], ["Double-leg heel raises", "3 x 15", "Stand holding a wall, rise onto the toes, and lower slowly over 3 seconds."], ["Knee-to-wall stretch", "2 x 10", "Face a wall with the heel down and push the knee forward to touch the wall. Move the foot back as it gets easier. Restores the ankle bend you need for squatting and jumping."], ["Single-leg balance", "3 x 30 sec", "Eyes open first, then eyes closed once 30 seconds is easy."], ["Standing calf stretch", "3 x 30 sec", "Hands on a wall, injured leg back with the heel down and knee straight."], ["Stationary bike or brisk walk", "15 to 20 min", "Steady pace, pain-free."]], "notes": ["Ice after exercise only if the ankle is swollen.", "Keep wearing the brace for school and daily activity.", "Do hip and core work 3 times a week."]}, {"start": 15, "end": 21, "name": "Strength and balance", "feel": ["No pain when walking or using stairs.", "Your ankle moves almost as far as the other side, and you can balance on the injured leg for 30 seconds."], "rows": [["Band eversion", "3 x 15, medium band", "Same as before with a thicker band. Move up a band when 15 reps feel easy."], ["Band inversion", "3 x 15, medium band", "Same as before with a thicker band."], ["Single-leg heel raises", "3 x 10 to 20", "Hold a wall and rise on the injured leg only, lowering slowly. Work toward 25 in a row."], ["Balance board", "3 x 30 to 60 sec", "Both feet first, then the injured leg only. Hold the board level, then tilt side to side with control."], ["Single-leg balance on a pillow", "3 x 30 sec", "Stand on a pillow or foam pad on the injured leg. Add catching a ball once it is easy."], ["Star excursion reach", "3 rounds", "Balance on the injured leg and reach the other foot forward, sideways, and backward as far as you can, tapping lightly."], ["Step-ups", "3 x 10", "Step up onto a low step with the injured leg and lower slowly. Builds strength for stairs and jumping."], ["Mini squats", "3 x 15", "Feet hip-width apart, bend the knees to a quarter squat, and stand back up."]], "notes": ["Ice is usually no longer needed. Use it after exercise only if swelling returns.", "Keep wearing the brace for sport-related activity."]}, {"start": 22, "end": 28, "name": "Hopping and running", "feel": ["You can do 25 single-leg heel raises in a row, or as many as on the uninjured side.", "Balance on the injured leg is about equal to the other side, and daily activities are pain-free."], "rows": [["Pogo hops", "3 x 20 sec, every other day", "Small, quick hops on the balls of both feet with soft knees."], ["Line hops (double-leg)", "3 x 10 each direction, every other day", "Hop forward and back over a tape line, then side to side. Land softly."], ["Walk-jog intervals", "3 times a week", "On flat ground, 1 minute jogging then 1 minute walking, building up to 20 minutes of continuous jogging. Straight lines only."], ["Balance with ball toss", "3 x 30 sec", "Stand on the injured leg on a pillow or balance board while catching and throwing a ball."], ["Band eversion", "3 x 15, medium to heavy band", "Keep doing this daily."], ["Single-leg heel raises", "3 x 20", "Keep doing this daily."]], "notes": ["Do the hops on alternate days so the ankle recovers between sessions.", "Wear the brace or tape for running and hopping.", "Stop and drop back a block if pain goes above 3 out of 10 or swelling appears the next morning."]}, {"start": 29, "end": 35, "name": "Agility and cutting", "feel": ["You can jog for 20 minutes and do double-leg hops without pain."], "rows": [["Single-leg line hops", "3 x 10 each direction, every other day", "Same as the double-leg version, on the injured leg only."], ["Single-leg hop and stick", "3 x 6 per leg, every other day", "Hop forward on the injured leg and hold the landing for 2 seconds with the knee over the toes. Then hop sideways."], ["Lateral bounds", "3 x 10, every other day", "Jump side to side from one foot to the other and hold each landing for 1 second."], ["Defensive slides", "3 x 20 sec", "Low basketball defensive stance, sliding side to side without crossing the feet."], ["Figure-8 and cutting drills", "3 to 5 reps each, at 50 to 75% speed", "Run figure-8s around two markers, then practice 45 and 90 degree cuts."], ["Strength and balance maintenance", "Daily", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Wear the brace or tape for all agility work.", "Increase speed only when the current speed feels easy and stable."]}, {"start": 36, "end": 42, "name": "Return to basketball", "feel": ["You can cut and change direction at near full speed without pain or a feeling that the ankle will give way."], "rows": [["Full-speed cutting drills", "3 to 5 reps each", "Cuts, sprints, and direction changes at full speed."], ["Basketball-specific drills", "20 to 30 min", "Layups, rebounding jumps, defensive closeouts, and shooting off the dribble, without contact."], ["Non-contact practice", "Days 36 to 39", "Join team practice for drills only."], ["Full practice", "Days 40 to 42", "Full practice including contact, if non-contact practice went well."], ["Strength and balance maintenance", "Every other day", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Day 42 return-to-play test. Pass all of these: 25 single-leg heel raises; star excursion reach and single-leg hop distance at 90% or more of the uninjured side; no pain or swelling after cutting and jumping.", "If you pass, return to games with a brace or tape. If not, repeat days 36 to 42."]}, {"start": 43, "end": null, "name": "Prevent the next sprain", "feel": ["You are back to playing normally."], "rows": [["Balance board", "2 x 60 sec, 3 times a week", "Injured leg only, then the other leg."], ["Single-leg hop and stick", "2 x 6 per leg, 3 times a week", "Good to add to your basketball warm-up."], ["Band eversion", "2 x 15, 3 times a week", "Heavy band."], ["Single-leg heel raises", "2 x 20, 3 times a week", "Both legs."]], "notes": ["The biggest risk factor for an ankle sprain is a previous sprain, so keep this 10 to 15 minute routine going for at least 3 months.", "Wear a brace or tape for basketball for at least the rest of the season."]}]}, "3": {"title": "Grade III Lateral Ankle Sprain", "why": ["A Grade III sprain is a complete tear of the outer ankle ligaments, usually the ATFL and often the CFL as well.", "The ankle can be unstable, and the injury can look like a fracture, so it needs a professional assessment and often an X-ray.", "Starting exercises too early on a fully torn ligament can leave the ankle permanently loose."], "treat": ["Crutches and a walking boot or brace, often for several weeks.", "Supervised physiotherapy once the doctor allows weight bearing.", "Surgery is uncommon, but may be considered if the ankle stays unstable after rehab.", "Return to sport often takes 2 to 3 months or longer."], "after": "Once a doctor or physiotherapist clears you, they may use parts of the Grade II lateral plan, starting at the block that matches how your ankle feels."}}, "medial": {"1": {"title": "Grade I Medial Ankle Sprain", "intro": "This plan is for a Grade I medial ankle sprain (the deltoid ligament on the inner ankle is stretched, with only microscopic tears). Medial sprains are less common than lateral sprains and usually take longer, about 3 to 5 weeks for Grade I. Throughout the plan, avoid forcing the foot to roll outward until it is pain-free.", "red": ["You cannot take four steps on the injured foot, or there is tenderness on the bony edges of the ankle or foot (Ottawa Ankle Rules).", "Swelling or pain is getting worse after the first 3 days instead of better.", "Numbness, tingling, or the foot turning cold or pale.", "Pain on the outer ankle or higher up the shin as well. Medial sprains sometimes come with a fracture or a high ankle sprain, so get it checked."], "blocks": [{"start": 1, "end": 3, "name": "Protect and calm the ankle", "feel": ["The inner ankle is swollen and tender.", "Walking is uncomfortable and you may limp."], "rows": [["Ankle pumps", "2 x 15 to 20, every 2 to 3 hours while awake", "Lie or sit with the leg raised. Point the toes away, then pull them toward you, moving only at the ankle. Keeps blood moving and reduces swelling."], ["Ankle alphabet", "1 round, 3 times a day", "Trace A to Z in the air with the big toe, using small letters that stay pain-free. Avoid pushing the foot outward."], ["Towel scrunches", "2 x 10, twice a day", "Seated, curl the toes to pull a towel toward you. Keeps the small foot muscles working."], ["Straight leg raises", "3 x 10 each direction, once a day", "Lying down, lift the straight leg forward, then to the side while lying on your side. Keeps hip strength without loading the ankle."], ["Glute bridges", "3 x 12, once a day", "Lie on your back with knees bent and push the hips up. Keep the injured foot flat and the pressure light."]], "notes": ["Ice for 15 to 20 minutes, 3 to 4 times a day, with a cloth between the ice and skin.", "Wear a compression wrap and raise the ankle above the heart when resting.", "Wear a brace or tape when walking. Use crutches if you limp badly.", "Avoid heat, hot baths, massage, and alcohol for the first 3 days."]}, {"start": 4, "end": 7, "name": "Start moving and walking", "feel": ["Swelling is going down and you can put full weight on the foot.", "You walk with only a mild limp."], "rows": [["Isometric ankle presses", "5 x 10 sec hold, each of 4 directions", "Sit and press the foot into a wall or your other foot (inward, up, down, then outward) without the ankle moving. Press outward gently, since it stresses the injured ligament."], ["Seated heel and toe raises", "3 x 15", "Seated with feet flat, lift both heels, lower, then lift the toes."], ["Towel calf stretch", "3 x 30 sec", "Sit with the leg straight, loop a towel around the ball of the foot, and pull gently until you feel a stretch in the calf."], ["Weight shifts", "3 x 10 each side", "Stand holding a counter and slowly shift weight from foot to foot, putting more weight on the injured side each day."], ["Single-leg balance (eyes open)", "3 x 15 to 30 sec", "Start once standing on the injured leg is comfortable. Stand next to a wall on a firm floor."], ["Stationary bike (optional)", "10 min, easy", "Only if pain-free. Keeps your fitness without impact."], ["Hip and core work", "Once a day", "Straight leg raises and glute bridges, plus a front plank for 3 x 20 sec."]], "notes": ["Ice 2 to 3 times a day and after exercise.", "Keep the brace or tape on whenever you are walking around."]}, {"start": 8, "end": 14, "name": "Build basic strength", "feel": ["You walk normally without a limp.", "Swelling is small, and pain only shows up when the foot rolls outward."], "rows": [["Band inversion", "3 x 10 to 15, light band", "Seated, anchor the band to the outside. Turn the foot inward and return slowly. Strengthens the tibialis posterior, which supports the inner ankle and arch. The most important exercise for a medial sprain."], ["Band dorsiflexion and plantarflexion", "3 x 15 each, light band", "Push the foot down against the band, then anchor the band in front and pull the foot up toward you."], ["Short-foot exercise", "3 x 10, 5 sec hold", "Standing or seated, lift the arch by pulling the ball of the foot toward the heel without curling the toes. Supports the inner ankle."], ["Double-leg heel raises", "3 x 15", "Stand holding a wall, rise onto the toes, and lower slowly over 3 seconds."], ["Knee-to-wall stretch", "2 x 10", "Face a wall with the heel down and push the knee forward to touch the wall. Move the foot back as it gets easier. Restores the ankle bend you need for squatting and jumping."], ["Single-leg balance", "3 x 30 sec", "Eyes open first, then eyes closed once 30 seconds is easy."], ["Stationary bike or brisk walk", "15 to 20 min", "Steady pace, pain-free."]], "notes": ["Ice after exercise only if the ankle is swollen.", "Keep wearing the brace for school and daily activity."]}, {"start": 15, "end": 21, "name": "Strength and balance", "feel": ["No pain when walking or using stairs.", "You can balance on the injured leg for 30 seconds."], "rows": [["Band inversion", "3 x 15, medium band", "Same as before with a thicker band."], ["Band eversion", "3 x 10 to 15, light band", "Anchor the band to the inside and turn the foot outward. Add this only once turning the foot outward is pain-free."], ["Single-leg heel raises", "3 x 10 to 20", "Hold a wall and rise on the injured leg only, lowering slowly. Work toward 25 in a row."], ["Balance board", "3 x 30 to 60 sec", "Both feet first, then the injured leg only. Hold the board level, then tilt side to side with control."], ["Single-leg balance on a pillow", "3 x 30 sec", "Stand on a pillow or foam pad on the injured leg. Add catching a ball once it is easy."], ["Star excursion reach", "3 rounds", "Balance on the injured leg and reach the other foot forward, sideways, and backward as far as you can, tapping lightly."], ["Step-ups", "3 x 10", "Step up onto a low step with the injured leg and lower slowly. Builds strength for stairs and jumping."], ["Mini squats", "3 x 15", "Feet hip-width apart, bend the knees to a quarter squat, and stand back up."]], "notes": ["Ice is usually no longer needed.", "Keep wearing the brace for sport-related activity."]}, {"start": 22, "end": 26, "name": "Hopping and running", "feel": ["You can do 25 single-leg heel raises in a row, or as many as on the uninjured side.", "Rolling the foot outward is pain-free."], "rows": [["Pogo hops", "3 x 20 sec, every other day", "Small, quick hops on the balls of both feet with soft knees."], ["Line hops (double-leg)", "3 x 10 each direction, every other day", "Hop forward and back over a tape line first. Add side-to-side hops once forward and back is pain-free."], ["Walk-jog intervals", "3 times a week", "On flat ground, 1 minute jogging then 1 minute walking, building up to 20 minutes of continuous jogging. Straight lines only."], ["Balance with ball toss", "3 x 30 sec", "Stand on the injured leg on a pillow or balance board while catching and throwing a ball."], ["Band inversion", "3 x 15, medium to heavy band", "Keep doing this daily."], ["Single-leg heel raises", "3 x 20", "Keep doing this daily."]], "notes": ["Do the hops on alternate days so the ankle recovers between sessions.", "Wear the brace or tape for running and hopping."]}, {"start": 27, "end": 31, "name": "Agility and cutting", "feel": ["You can jog for 20 minutes and do double-leg hops without pain."], "rows": [["Single-leg line hops", "3 x 10 each direction, every other day", "Same as the double-leg version, on the injured leg only."], ["Single-leg hop and stick", "3 x 6 per leg, every other day", "Hop forward on the injured leg and hold the landing for 2 seconds with the knee over the toes. Then hop sideways."], ["Defensive slides", "3 x 20 sec", "Low basketball defensive stance, sliding side to side without crossing the feet."], ["Figure-8 and cutting drills", "3 to 5 reps each, at 50 to 75% speed", "Run figure-8s around two markers, then practice 45 and 90 degree cuts."], ["Lateral bounds", "3 x 10, every other day", "Jump side to side from one foot to the other and hold each landing. Add this last: pushing off to the outside stresses the deltoid ligament."], ["Strength and balance maintenance", "Daily", "Band inversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Wear the brace or tape for all agility work.", "Cuts that push off the outside of the foot are the hardest on this ligament, so build their speed last."]}, {"start": 32, "end": 35, "name": "Return to basketball", "feel": ["You can cut and change direction at near full speed without pain."], "rows": [["Full-speed cutting drills", "3 to 5 reps each", "Cuts, sprints, and direction changes at full speed."], ["Basketball-specific drills", "20 to 30 min", "Layups, rebounding jumps, defensive closeouts, and shooting off the dribble, without contact."], ["Team practice", "Days 34 to 35", "Join practice, starting with drills and adding contact if drills go well."], ["Strength and balance maintenance", "Every other day", "Band inversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Day 35 return-to-play test. Pass all of these: 25 single-leg heel raises; star excursion reach and single-leg hop distance at 90% or more of the uninjured side; no pain or swelling after cutting and jumping.", "If you pass, return to games with a brace or tape. If not, repeat days 32 to 35."]}, {"start": 36, "end": null, "name": "Prevent the next sprain", "feel": ["You are back to playing normally."], "rows": [["Balance board", "2 x 60 sec, 3 times a week", "Injured leg only, then the other leg."], ["Single-leg hop and stick", "2 x 6 per leg, 3 times a week", "Good to add to your basketball warm-up."], ["Band inversion", "2 x 15, 3 times a week", "Heavy band."], ["Single-leg heel raises", "2 x 20, 3 times a week", "Both legs."]], "notes": ["The biggest risk factor for an ankle sprain is a previous sprain, so keep this 10 to 15 minute routine going for at least 3 months.", "Wear a brace or tape for basketball for at least the rest of the season."]}]}, "2": {"title": "Grade II Medial Ankle Sprain", "intro": "This plan is for a Grade II medial ankle sprain (a partial tear of the deltoid ligament on the inner ankle). Recovery usually takes about 6 to 8 weeks. Have a doctor check the ankle first, because medial sprains often come with a fracture or high ankle sprain. Throughout the plan, avoid forcing the foot to roll outward until it is pain-free.", "red": ["You cannot take four steps on the injured foot, or there is tenderness on the bony edges of the ankle or foot (Ottawa Ankle Rules).", "Swelling or pain is getting worse after the first 3 days instead of better.", "Numbness, tingling, or the foot turning cold or pale.", "Pain on the outer ankle or higher up the shin as well.", "The ankle still feels unstable during normal walking after 3 weeks."], "blocks": [{"start": 1, "end": 5, "name": "Protect and calm the ankle", "feel": ["The inner ankle is swollen and bruised, and putting weight on it hurts.", "You need crutches to walk."], "rows": [["Ankle pumps", "2 x 15 to 20, every 2 to 3 hours while awake", "Lie or sit with the leg raised. Point the toes away, then pull them toward you, moving only at the ankle. Keeps blood moving and reduces swelling."], ["Ankle alphabet", "1 round, 3 times a day", "Trace A to Z in the air with the big toe, using small letters that stay pain-free. Avoid pushing the foot outward."], ["Towel scrunches", "2 x 10, twice a day", "Seated, curl the toes to pull a towel toward you. Keeps the small foot muscles working."], ["Straight leg raises", "3 x 10 each direction, once a day", "Lying down, lift the straight leg forward, then to the side while lying on your side. Keeps hip strength without loading the ankle."], ["Glute bridges", "3 x 12, once a day", "Lie on your back with knees bent and push the hips up. Keep the injured foot flat and the pressure light."]], "notes": ["Ice for 15 to 20 minutes every 2 to 3 hours while awake.", "Wear a compression wrap and keep the ankle raised when resting.", "Use crutches and put only as much weight on the foot as is comfortable. Wear a brace or walking boot if your doctor gives you one.", "Avoid heat, hot baths, massage, and alcohol for the first 3 days."]}, {"start": 6, "end": 14, "name": "Start moving and walking", "feel": ["Swelling is going down and you can put most of your weight on the foot.", "You walk short distances with a mild limp."], "rows": [["Ankle pumps and alphabet", "1 round each, twice a day", "Same as before. The letters can get bigger as long as they stay pain-free."], ["Isometric ankle presses", "5 x 10 sec hold, each of 4 directions", "Sit and press the foot into a wall or your other foot (inward, up, down, then outward) without the ankle moving. Press outward gently, since it stresses the injured ligament."], ["Seated heel and toe raises", "3 x 15", "Seated with feet flat, lift both heels, lower, then lift the toes."], ["Towel calf stretch", "3 x 30 sec", "Sit with the leg straight, loop a towel around the ball of the foot, and pull gently until you feel a stretch in the calf."], ["Weight shifts", "3 x 10 each side", "Stand holding a counter and slowly shift weight from foot to foot, putting more weight on the injured side each day."], ["Single-leg balance (eyes open)", "3 x 15 to 30 sec", "Start once standing on the injured leg is comfortable. Stand next to a wall on a firm floor."], ["Stationary bike (optional)", "10 min, easy", "Only if pain-free. Keeps your fitness without impact."], ["Hip and core work", "Once a day", "Straight leg raises and glute bridges, plus a front plank for 3 x 20 sec."]], "notes": ["Ice 2 to 3 times a day and after exercise.", "Stop using crutches once you can walk without a limp.", "Keep the brace on whenever you are walking around."]}, {"start": 15, "end": 24, "name": "Build basic strength", "feel": ["You walk normally without crutches and with little or no limp.", "Swelling is small."], "rows": [["Band inversion", "3 x 10, light band", "Seated, anchor the band to the outside. Turn the foot inward and return slowly. Strengthens the tibialis posterior, which supports the inner ankle and arch. The most important exercise for a medial sprain."], ["Band dorsiflexion and plantarflexion", "3 x 10 each, light band", "Push the foot down against the band, then anchor the band in front and pull the foot up toward you."], ["Short-foot exercise", "3 x 10, 5 sec hold", "Standing or seated, lift the arch by pulling the ball of the foot toward the heel without curling the toes. Supports the inner ankle."], ["Double-leg heel raises", "3 x 15", "Stand holding a wall, rise onto the toes, and lower slowly over 3 seconds."], ["Knee-to-wall stretch", "2 x 10", "Face a wall with the heel down and push the knee forward to touch the wall. Move the foot back as it gets easier. Restores the ankle bend you need for squatting and jumping."], ["Single-leg balance", "3 x 30 sec", "Eyes open first, then eyes closed once 30 seconds is easy."], ["Stationary bike or brisk walk", "15 to 20 min", "Steady pace, pain-free."]], "notes": ["Ice after exercise only if the ankle is swollen.", "Keep wearing the brace for school and daily activity.", "Do hip and core work 3 times a week."]}, {"start": 25, "end": 35, "name": "Strength and balance", "feel": ["No pain when walking or using stairs.", "You can balance on the injured leg for 30 seconds."], "rows": [["Band inversion", "3 x 15, medium band", "Same as before with a thicker band."], ["Band eversion", "3 x 10 to 15, light band", "Anchor the band to the inside and turn the foot outward. Add this only once turning the foot outward is pain-free."], ["Single-leg heel raises", "3 x 10 to 20", "Hold a wall and rise on the injured leg only, lowering slowly. Work toward 25 in a row."], ["Balance board", "3 x 30 to 60 sec", "Both feet first, then the injured leg only. Hold the board level, then tilt side to side with control."], ["Single-leg balance on a pillow", "3 x 30 sec", "Stand on a pillow or foam pad on the injured leg. Add catching a ball once it is easy."], ["Star excursion reach", "3 rounds", "Balance on the injured leg and reach the other foot forward, sideways, and backward as far as you can, tapping lightly."], ["Step-ups", "3 x 10", "Step up onto a low step with the injured leg and lower slowly. Builds strength for stairs and jumping."], ["Mini squats", "3 x 15", "Feet hip-width apart, bend the knees to a quarter squat, and stand back up."]], "notes": ["Ice is usually no longer needed.", "Keep wearing the brace for sport-related activity."]}, {"start": 36, "end": 42, "name": "Hopping and running", "feel": ["You can do 25 single-leg heel raises in a row, or as many as on the uninjured side.", "Rolling the foot outward is pain-free."], "rows": [["Pogo hops", "3 x 20 sec, every other day", "Small, quick hops on the balls of both feet with soft knees."], ["Line hops (double-leg)", "3 x 10 each direction, every other day", "Hop forward and back over a tape line first. Add side-to-side hops once forward and back is pain-free."], ["Walk-jog intervals", "3 times a week", "On flat ground, 1 minute jogging then 1 minute walking, building up to 20 minutes of continuous jogging. Straight lines only."], ["Balance with ball toss", "3 x 30 sec", "Stand on the injured leg on a pillow or balance board while catching and throwing a ball."], ["Band inversion", "3 x 15, medium to heavy band", "Keep doing this daily."], ["Single-leg heel raises", "3 x 20", "Keep doing this daily."]], "notes": ["Do the hops on alternate days so the ankle recovers between sessions.", "Wear the brace or tape for running and hopping.", "Stop and drop back a block if pain goes above 3 out of 10 or swelling appears the next morning."]}, {"start": 43, "end": 49, "name": "Agility and cutting", "feel": ["You can jog for 20 minutes and do double-leg hops without pain."], "rows": [["Single-leg line hops", "3 x 10 each direction, every other day", "Same as the double-leg version, on the injured leg only."], ["Single-leg hop and stick", "3 x 6 per leg, every other day", "Hop forward on the injured leg and hold the landing for 2 seconds with the knee over the toes. Then hop sideways."], ["Defensive slides", "3 x 20 sec", "Low basketball defensive stance, sliding side to side without crossing the feet."], ["Figure-8 and cutting drills", "3 to 5 reps each, at 50 to 75% speed", "Run figure-8s around two markers, then practice 45 and 90 degree cuts."], ["Lateral bounds", "3 x 10, every other day", "Jump side to side from one foot to the other and hold each landing. Add this last: pushing off to the outside stresses the deltoid ligament."], ["Strength and balance maintenance", "Daily", "Band inversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Wear the brace or tape for all agility work.", "Cuts that push off the outside of the foot are the hardest on this ligament, so build their speed last."]}, {"start": 50, "end": 56, "name": "Return to basketball", "feel": ["You can cut and change direction at near full speed without pain or a feeling that the ankle will give way."], "rows": [["Full-speed cutting drills", "3 to 5 reps each", "Cuts, sprints, and direction changes at full speed."], ["Basketball-specific drills", "20 to 30 min", "Layups, rebounding jumps, defensive closeouts, and shooting off the dribble, without contact."], ["Non-contact practice", "Days 50 to 53", "Join team practice for drills only."], ["Full practice", "Days 54 to 56", "Full practice including contact, if non-contact practice went well."], ["Strength and balance maintenance", "Every other day", "Band inversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Day 56 return-to-play test. Pass all of these: 25 single-leg heel raises; star excursion reach and single-leg hop distance at 90% or more of the uninjured side; no pain or swelling after cutting and jumping.", "If you pass, return to games with a brace or tape. If not, repeat days 50 to 56."]}, {"start": 57, "end": null, "name": "Prevent the next sprain", "feel": ["You are back to playing normally."], "rows": [["Balance board", "2 x 60 sec, 3 times a week", "Injured leg only, then the other leg."], ["Single-leg hop and stick", "2 x 6 per leg, 3 times a week", "Good to add to your basketball warm-up."], ["Band inversion", "2 x 15, 3 times a week", "Heavy band."], ["Single-leg heel raises", "2 x 20, 3 times a week", "Both legs."]], "notes": ["The biggest risk factor for an ankle sprain is a previous sprain, so keep this 10 to 15 minute routine going for at least 3 months.", "Wear a brace or tape for basketball for at least the rest of the season."]}]}, "3": {"title": "Grade III Medial Ankle Sprain", "why": ["A Grade III medial sprain is a complete tear of the deltoid ligament on the inner ankle.", "This ligament is very strong, so a complete tear usually means a large force, and it often comes with a fracture or a high ankle sprain.", "It needs a professional assessment, usually with imaging."], "treat": ["Crutches and a walking boot, often for several weeks.", "Surgery if the ankle joint is unstable or there is a fracture.", "Supervised physiotherapy afterward.", "Return to sport often takes several months."], "after": "Once a doctor or physiotherapist clears you, they may use parts of the Grade II medial plan, starting at the block that matches how your ankle feels."}}, "high-ankle": {"1": {"title": "Grade I High Ankle Sprain", "intro": "This plan is for a Grade I high ankle (syndesmotic) sprain. A high ankle sprain injures the ligaments that hold the shin bones (tibia and fibula) together just above the ankle. It usually happens when the foot twists outward while the ankle is bent upward, and it heals more slowly than a lateral sprain. Have a doctor confirm the diagnosis before starting this plan: an unstable high ankle sprain needs surgery. Throughout the plan, avoid twisting the foot outward and forced deep ankle bends until the later blocks. Grade I usually takes about 4 to 6 weeks.", "red": ["You cannot take four steps on the injured foot, or there is tenderness on the bony edges of the ankle or foot (Ottawa Ankle Rules).", "Swelling or pain is getting worse after the first 3 days instead of better.", "Numbness, tingling, or the foot turning cold or pale.", "Pain when you squeeze the shin bones together halfway up the calf, or the ankle feels unstable when standing. These need a doctor's assessment and often imaging."], "blocks": [{"start": 1, "end": 5, "name": "Protect and calm the ankle", "feel": ["Pain is above the ankle, at the front, and is worse when the foot turns outward or bends upward.", "Walking is painful and you may need crutches."], "rows": [["Ankle pumps", "2 x 15 to 20, every 2 to 3 hours while awake", "Lie or sit with the leg raised. Point the toes away, then pull them toward you, moving only at the ankle. Keeps blood moving and reduces swelling."], ["Towel scrunches", "2 x 10, twice a day", "Seated, curl the toes to pull a towel toward you. Keeps the small foot muscles working."], ["Straight leg raises", "3 x 10 each direction, once a day", "Lying down, lift the straight leg forward, then to the side while lying on your side. Keeps hip strength without loading the ankle."], ["Glute bridges", "3 x 12, once a day", "Lie on your back with knees bent and push the hips up. Keep the injured foot flat and the pressure light."]], "notes": ["Ice for 15 to 20 minutes every 2 to 3 hours while awake.", "Wear a compression wrap and raise the ankle when resting.", "Use crutches until you can walk without a limp.", "Skip the ankle alphabet for now: its circles twist the ankle outward.", "Avoid heat, hot baths, massage, and alcohol for the first 3 days."]}, {"start": 6, "end": 12, "name": "Start moving and walking", "feel": ["You can put full weight on the foot and walk with only a mild limp.", "Pain at rest is mostly gone."], "rows": [["Isometric ankle presses", "5 x 10 sec hold, each of 4 directions", "Sit and press the foot into a wall or your other foot (outward, inward, up, down) without the ankle moving. Gentle pressure only."], ["Seated heel and toe raises", "3 x 15", "Seated with feet flat, lift both heels, lower, then lift the toes."], ["Towel calf stretch", "3 x 30 sec", "Sit with the leg straight and pull a towel around the ball of the foot until you feel a gentle stretch. Stop before any pinching at the front of the ankle."], ["Weight shifts", "3 x 10 each side", "Stand holding a counter and slowly shift weight from foot to foot, putting more weight on the injured side each day."], ["Single-leg balance (eyes open)", "3 x 15 to 30 sec", "Start once standing on the injured leg is comfortable. Stand next to a wall on a firm floor."], ["Stationary bike (optional)", "10 min, easy", "Only if pain-free. Keeps your fitness without impact."], ["Hip and core work", "Once a day", "Straight leg raises and glute bridges, plus a front plank for 3 x 20 sec."]], "notes": ["Ice after exercise.", "Stop using crutches once you can walk without a limp.", "Avoid twisting the foot outward and forced deep ankle bends."]}, {"start": 13, "end": 21, "name": "Build basic strength", "feel": ["You walk normally, including on stairs.", "Swelling is small."], "rows": [["Band eversion", "3 x 10 to 15, light band", "Anchor the band to the inside and turn the foot outward. Keep the movement small at first."], ["Band inversion", "3 x 10 to 15, light band", "Anchor the band to the outside and turn the foot inward."], ["Band dorsiflexion and plantarflexion", "3 x 15 each, light band", "Push the foot down against the band, then pull the foot up toward you. Stay out of the deepest part of the upward bend."], ["Double-leg heel raises", "3 x 15", "Stand holding a wall, rise onto the toes, and lower slowly over 3 seconds."], ["Single-leg balance", "3 x 30 sec", "Eyes open first, then eyes closed once 30 seconds is easy."], ["Ankle alphabet", "1 round, twice a day", "Add this now, using small letters and avoiding twisting the foot outward."], ["Stationary bike or brisk walk", "15 to 20 min", "Steady pace, pain-free."]], "notes": ["Ice after exercise only if the ankle is swollen.", "Avoid twisting the foot outward and forced deep ankle bends."]}, {"start": 22, "end": 28, "name": "Strength, balance, and first hops", "feel": ["No pain with daily activities.", "You can balance on the injured leg for 30 seconds."], "rows": [["Single-leg heel raises", "3 x 10 to 20", "Hold a wall and rise on the injured leg only, lowering slowly. Work toward 25 in a row."], ["Balance board", "3 x 30 to 60 sec", "Both feet first, then the injured leg only. Hold the board level, then tilt side to side with control."], ["Single-leg balance on a pillow", "3 x 30 sec", "Stand on a pillow or foam pad on the injured leg. Add catching a ball once it is easy."], ["Star excursion reach", "3 rounds", "Balance on the injured leg and reach the other foot forward, sideways, and backward as far as you can, tapping lightly."], ["Step-ups", "3 x 10", "Step up onto a low step with the injured leg and lower slowly. Builds strength for stairs and jumping."], ["Knee-to-wall stretch", "2 x 10", "Face a wall with the heel down and push the knee gently toward the wall. Stop before any pinching at the front of the ankle."], ["Pogo hops", "3 x 20 sec, every other day", "Small, quick hops on both feet. Start at the end of this block, only if all the other exercises are pain-free."]], "notes": ["Keep wearing a lace-up brace for any sport-related activity."]}, {"start": 29, "end": 35, "name": "Running and hopping", "feel": ["You can do 25 single-leg heel raises in a row, or as many as on the uninjured side.", "Pogo hops are pain-free."], "rows": [["Walk-jog intervals", "3 times a week", "On flat ground, 1 minute jogging then 1 minute walking, building up to 20 minutes of continuous jogging. Straight lines only."], ["Line hops (double-leg)", "3 x 10 each direction, every other day", "Hop forward and back over a tape line, then side to side. Land softly."], ["Single-leg line hops", "3 x 10 each direction, every other day", "Hop forward and back on the injured leg once double-leg hops are easy."], ["Balance with ball toss", "3 x 30 sec", "Stand on the injured leg on a pillow or balance board while catching and throwing a ball."], ["Strength and balance maintenance", "Daily", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Straight-line running only in this block.", "Wear a lace-up brace for running and hopping."]}, {"start": 36, "end": 42, "name": "Agility, cutting, and return to basketball", "feel": ["You can jog for 20 minutes without pain."], "rows": [["Single-leg hop and stick", "3 x 6 per leg, every other day", "Hop forward on the injured leg and hold the landing for 2 seconds with the knee over the toes. Then hop sideways."], ["Lateral bounds", "3 x 10, every other day", "Jump side to side from one foot to the other and hold each landing for 1 second."], ["Defensive slides", "3 x 20 sec", "Low basketball defensive stance, sliding side to side without crossing the feet."], ["Figure-8 and cutting drills", "3 to 5 reps each, at 50 to 75% speed", "Start only once straight-line running is pain-free. Twisting on a planted foot stresses the injured ligaments, so build speed gradually."], ["Basketball drills and practice", "Days 40 to 42", "Drills first, then full practice including contact if drills go well."], ["Strength and balance maintenance", "Every other day", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Day 42 return-to-play test. Pass all of these: 25 single-leg heel raises; star excursion reach and single-leg hop distance at 90% or more of the uninjured side; no pain or swelling after cutting and jumping.", "If you pass, return to games with a brace or tape. If not, repeat days 36 to 42."]}, {"start": 43, "end": null, "name": "Prevent the next sprain", "feel": ["You are back to playing normally."], "rows": [["Balance board", "2 x 60 sec, 3 times a week", "Injured leg only, then the other leg."], ["Single-leg hop and stick", "2 x 6 per leg, 3 times a week", "Good to add to your basketball warm-up."], ["Band eversion", "2 x 15, 3 times a week", "Heavy band."], ["Single-leg heel raises", "2 x 20, 3 times a week", "Both legs."]], "notes": ["The biggest risk factor for an ankle sprain is a previous sprain, so keep this 10 to 15 minute routine going for at least 3 months.", "Wear a brace or tape for basketball for at least the rest of the season."]}]}, "2": {"title": "Grade II High Ankle Sprain", "intro": "This plan is for a Grade II high ankle (syndesmotic) sprain. A high ankle sprain injures the ligaments that hold the shin bones (tibia and fibula) together just above the ankle. It usually happens when the foot twists outward while the ankle is bent upward, and it heals more slowly than a lateral sprain. Have a doctor confirm the diagnosis before starting this plan: an unstable high ankle sprain needs surgery. Throughout the plan, avoid twisting the foot outward and forced deep ankle bends until the later blocks. Grade II usually takes about 8 to 10 weeks, and only stable injuries confirmed by a doctor should follow this plan.", "red": ["You cannot take four steps on the injured foot, or there is tenderness on the bony edges of the ankle or foot (Ottawa Ankle Rules).", "Swelling or pain is getting worse after the first 3 days instead of better.", "Numbness, tingling, or the foot turning cold or pale.", "Pain when you squeeze the shin bones together halfway up the calf, or the ankle feels unstable when standing. These need a doctor's assessment and often imaging.", "Pain is not improving after 2 weeks of protection."], "blocks": [{"start": 1, "end": 14, "name": "Protect the ankle", "feel": ["Pain is above the ankle, at the front, and putting weight on the foot hurts.", "You need crutches, and possibly a walking boot."], "rows": [["Ankle pumps", "2 x 15 to 20, every 2 to 3 hours while awake", "Lie or sit with the leg raised. Point the toes away, then pull them toward you, moving only at the ankle. Keeps blood moving and reduces swelling."], ["Towel scrunches", "2 x 10, twice a day", "Seated, curl the toes to pull a towel toward you. Keeps the small foot muscles working."], ["Straight leg raises", "3 x 10 each direction, once a day", "Lying down, lift the straight leg forward, then to the side while lying on your side. Keeps hip strength without loading the ankle."], ["Glute bridges", "3 x 12, once a day", "Lie on your back with knees bent and push the hips up. Keep the injured foot flat and the pressure light."], ["Upper body and core work", "3 times a week", "Seated upper-body exercises and front planks, to keep your fitness without loading the ankle."]], "notes": ["Ice for 15 to 20 minutes every 2 to 3 hours while awake for the first 3 days, then 2 to 3 times a day.", "Follow your doctor's instructions on crutches and walking boots. Put weight on the foot only as instructed.", "Skip the ankle alphabet: its circles twist the ankle outward.", "Avoid heat, hot baths, massage, and alcohol for the first 3 days."]}, {"start": 15, "end": 24, "name": "Start moving and walking", "feel": ["You can put full weight on the foot and walk with a mild limp.", "Pain at rest is gone."], "rows": [["Isometric ankle presses", "5 x 10 sec hold, each of 4 directions", "Sit and press the foot into a wall or your other foot (outward, inward, up, down) without the ankle moving. Gentle pressure only."], ["Seated heel and toe raises", "3 x 15", "Seated with feet flat, lift both heels, lower, then lift the toes."], ["Towel calf stretch", "3 x 30 sec", "Sit with the leg straight and pull a towel around the ball of the foot until you feel a gentle stretch. Stop before any pinching at the front of the ankle."], ["Weight shifts", "3 x 10 each side", "Stand holding a counter and slowly shift weight from foot to foot, putting more weight on the injured side each day."], ["Single-leg balance (eyes open)", "3 x 15 to 30 sec", "Start once standing on the injured leg is comfortable. Stand next to a wall on a firm floor."], ["Stationary bike (optional)", "10 min, easy", "Only if pain-free. Keeps your fitness without impact."], ["Hip and core work", "Once a day", "Straight leg raises and glute bridges, plus a front plank for 3 x 20 sec."]], "notes": ["Ice after exercise.", "Stop using crutches once you can walk without a limp.", "Avoid twisting the foot outward and forced deep ankle bends."]}, {"start": 25, "end": 35, "name": "Build basic strength", "feel": ["You walk normally, including on stairs.", "Swelling is small."], "rows": [["Band eversion", "3 x 10 to 15, light band", "Anchor the band to the inside and turn the foot outward. Keep the movement small at first."], ["Band inversion", "3 x 10 to 15, light band", "Anchor the band to the outside and turn the foot inward."], ["Band dorsiflexion and plantarflexion", "3 x 15 each, light band", "Push the foot down against the band, then pull the foot up toward you. Stay out of the deepest part of the upward bend."], ["Double-leg heel raises", "3 x 15", "Stand holding a wall, rise onto the toes, and lower slowly over 3 seconds."], ["Single-leg balance", "3 x 30 sec", "Eyes open first, then eyes closed once 30 seconds is easy."], ["Ankle alphabet", "1 round, twice a day", "Add this now, using small letters and avoiding twisting the foot outward."], ["Stationary bike or brisk walk", "15 to 20 min", "Steady pace, pain-free."]], "notes": ["Ice after exercise only if the ankle is swollen.", "Avoid twisting the foot outward and forced deep ankle bends.", "Wear a lace-up brace for long walks."]}, {"start": 36, "end": 45, "name": "Strength, balance, and first hops", "feel": ["No pain with daily activities.", "You can balance on the injured leg for 30 seconds."], "rows": [["Single-leg heel raises", "3 x 10 to 20", "Hold a wall and rise on the injured leg only, lowering slowly. Work toward 25 in a row."], ["Balance board", "3 x 30 to 60 sec", "Both feet first, then the injured leg only. Hold the board level, then tilt side to side with control."], ["Single-leg balance on a pillow", "3 x 30 sec", "Stand on a pillow or foam pad on the injured leg. Add catching a ball once it is easy."], ["Star excursion reach", "3 rounds", "Balance on the injured leg and reach the other foot forward, sideways, and backward as far as you can, tapping lightly."], ["Step-ups", "3 x 10", "Step up onto a low step with the injured leg and lower slowly. Builds strength for stairs and jumping."], ["Knee-to-wall stretch", "2 x 10", "Face a wall with the heel down and push the knee gently toward the wall. Stop before any pinching at the front of the ankle."], ["Pogo hops", "3 x 20 sec, every other day", "Small, quick hops on both feet. Start at the end of this block, only if all the other exercises are pain-free."]], "notes": ["Keep wearing a lace-up brace for any sport-related activity."]}, {"start": 46, "end": 56, "name": "Running and hopping", "feel": ["You can do 25 single-leg heel raises in a row, or as many as on the uninjured side.", "Pogo hops are pain-free."], "rows": [["Walk-jog intervals", "3 times a week", "On flat ground, 1 minute jogging then 1 minute walking, building up to 20 minutes of continuous jogging. Straight lines only."], ["Line hops (double-leg)", "3 x 10 each direction, every other day", "Hop forward and back over a tape line, then side to side. Land softly."], ["Single-leg line hops", "3 x 10 each direction, every other day", "Hop forward and back on the injured leg once double-leg hops are easy."], ["Balance with ball toss", "3 x 30 sec", "Stand on the injured leg on a pillow or balance board while catching and throwing a ball."], ["Strength and balance maintenance", "Daily", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Straight-line running only in this block.", "Wear a lace-up brace for running and hopping.", "Stop and drop back a block if pain goes above 3 out of 10 or swelling appears the next morning."]}, {"start": 57, "end": 63, "name": "Agility and cutting", "feel": ["You can jog for 20 minutes without pain."], "rows": [["Single-leg hop and stick", "3 x 6 per leg, every other day", "Hop forward on the injured leg and hold the landing for 2 seconds with the knee over the toes. Then hop sideways."], ["Lateral bounds", "3 x 10, every other day", "Jump side to side from one foot to the other and hold each landing for 1 second."], ["Defensive slides", "3 x 20 sec", "Low basketball defensive stance, sliding side to side without crossing the feet."], ["Figure-8 and cutting drills", "3 to 5 reps each, at 50 to 75% speed", "Start only once straight-line running is pain-free. Twisting on a planted foot stresses the injured ligaments, so build speed gradually."], ["Strength and balance maintenance", "Daily", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Wear a lace-up brace for all agility work."]}, {"start": 64, "end": 70, "name": "Return to basketball", "feel": ["You can cut and change direction at near full speed without pain or a feeling that the ankle will give way."], "rows": [["Full-speed cutting drills", "3 to 5 reps each", "Cuts, sprints, and direction changes at full speed."], ["Basketball-specific drills", "20 to 30 min", "Layups, rebounding jumps, defensive closeouts, and shooting off the dribble, without contact."], ["Non-contact practice", "Days 64 to 67", "Join team practice for drills only."], ["Full practice", "Days 68 to 70", "Full practice including contact, if non-contact practice went well."], ["Strength and balance maintenance", "Every other day", "Band eversion, single-leg heel raises, and balance board, 2 sets each."]], "notes": ["Day 70 return-to-play test. Pass all of these: 25 single-leg heel raises; star excursion reach and single-leg hop distance at 90% or more of the uninjured side; no pain or swelling after cutting and jumping.", "If you pass, return to games with a brace or tape. If not, repeat days 64 to 70."]}, {"start": 71, "end": null, "name": "Prevent the next sprain", "feel": ["You are back to playing normally."], "rows": [["Balance board", "2 x 60 sec, 3 times a week", "Injured leg only, then the other leg."], ["Single-leg hop and stick", "2 x 6 per leg, 3 times a week", "Good to add to your basketball warm-up."], ["Band eversion", "2 x 15, 3 times a week", "Heavy band."], ["Single-leg heel raises", "2 x 20, 3 times a week", "Both legs."]], "notes": ["The biggest risk factor for an ankle sprain is a previous sprain, so keep this 10 to 15 minute routine going for at least 3 months.", "Wear a brace or tape for basketball for at least the rest of the season."]}]}, "3": {"title": "Grade III High Ankle Sprain", "why": ["A Grade III high ankle sprain is a complete tear of the ligaments holding the shin bones together, so the ankle joint is unstable.", "It often comes with a fracture and needs imaging to assess.", "Most Grade III high ankle sprains need surgery to hold the bones together while they heal."], "treat": ["Surgery to stabilize the joint, followed by a walking boot and crutches.", "Supervised physiotherapy for several months.", "Return to sport often takes 3 months or longer."], "after": "Once a doctor or physiotherapist clears you, they may use parts of the Grade II high ankle plan, starting at the block that matches how your ankle feels."}}, "where": ["See a sports medicine doctor, orthopedic doctor, or physiotherapist as soon as possible.", "Go to an emergency room if you cannot put any weight on the foot, the ankle looks deformed, or the foot is numb, cold, or pale.", "Until you are seen: rest the ankle, ice it for 15 to 20 minutes every 2 to 3 hours, wrap it, keep it raised, and use crutches."]}</script>
 <script>
 (function () {
   var DATA = JSON.parse(document.getElementById("plan-data").textContent);
 
-  // Add exercise videos here once they are filmed: "Exercise name": "https://link-to-video"
+  // Exercise videos. Each placeholder is tagged with a file-name-style id (e.g. "ankle-pumps").
+  // Once filmed, map the exercise name or id to its file: { "ankle-pumps": "videos/ankle-pumps.mp4" }
   var VIDEOS = {};
+  function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+  // Rows that are practice, sport drills, or summaries of other exercises: no video demo, and left out of the library
+  var NON_REHAB = ["Basketball-specific drills", "Basketball drills and practice", "Team practice", "Non-contact practice", "Full practice",
+                   "Strength and balance maintenance", "Hip and core work", "Upper body and core work"];
+  function isNonRehab(name) { return NON_REHAB.indexOf(name) > -1; }
+  function demoHTML(name) {
+    if (isNonRehab(name)) return '<div class="video-na">Video demo not applicable</div>';
+    var slug = slugify(name), v = VIDEOS[name] || VIDEOS[slug];
+    return v
+      ? '<video src="' + esc(v) + '" controls preload="metadata" playsinline></video>'
+      : '<div class="video-ph" data-video="' + slug + '" title="Video demo: ' + esc(name) + '">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.3v7.4l6.2-3.7z" fill="currentColor"/></svg>' +
+        "<span>Video demo</span></div>";
+  }
 
   var LIGS = {
-    "lateral": { tag: "Lateral sprain", name: "Outer ankle", text: "The foot rolls inward, like landing on someone's foot after a rebound.", meta: "Most common" },
-    "medial": { tag: "Medial sprain", name: "Inner ankle", text: "The foot rolls outward. The inner ligament is very strong, so this is less common.", meta: "Less common" },
-    "high-ankle": { tag: "High ankle sprain", name: "Above the ankle", text: "The foot twists outward while the ankle is bent upward. Pain sits above the joint, at the front.", meta: "Slowest to heal" }
+    "lateral": { tag: "Lateral sprain", name: "Outer ankle", text: "The foot rolled inward, like landing on someone's foot after a rebound.", meta: "Most common" },
+    "medial": { tag: "Medial sprain", name: "Inner ankle", text: "The foot rolled outward. The inner ligament is very strong, so this is less common.", meta: "Less common" },
+    "high-ankle": { tag: "High ankle sprain", name: "Above the ankle", text: "The foot twisted outward while the ankle was bent upward. Pain sits above the joint, at the front.", meta: "Slowest to heal" }
   };
   var GRADES = {
     "1": { numeral: "I", pill: "ok", sev: "Mild", text: "Ligament stretched. A little swelling, and you can walk with little or no limp." },
@@ -358,184 +506,386 @@ td.desc { color: var(--muted); }
     "3": { numeral: "III", pill: "stop", sev: "Severe", text: "Complete tear. You can't put weight on it, or the ankle feels loose." }
   };
   var ROMAN = { "1": "I", "2": "II", "3": "III" };
+  var CHIPS = [["Today", 0], ["2 days", 2], ["5 days", 5], ["1 week", 7], ["2 weeks", 14], ["3 weeks", 21], ["4 weeks", 28], ["6 weeks", 42]];
 
-  var state = { lig: null, grade: null };
-  var ligBox = document.getElementById("lig-options");
-  var gradeBox = document.getElementById("grade-options");
-  var planSec = document.getElementById("plan");
-  var planBody = document.getElementById("plan-body");
+  var ans = { lig: null, grade: null, days: null };
+  var step = 1;
+  var keepScroll = false;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (id) { return document.getElementById(id); };
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; });
   }
   function times(s) { return esc(s).replace(/(\d) x (\d)/g, "$1 × $2"); }
   function list(items, cls) { return '<ul class="' + cls + '">' + items.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>"; }
+  function scrollToEl(el) { if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); }
 
-  // Selector
-  ligBox.innerHTML = Object.keys(LIGS).map(function (k) {
+  // Which block a recovery day falls in
+  function startIndex(P, day) {
+    var main = P.blocks.filter(function (b) { return b.end; });
+    for (var i = 0; i < main.length; i++) if (day >= main[i].start && day <= main[i].end) return { idx: i, past: false };
+    return { idx: main.length - 1, past: true };
+  }
+
+  /* ---------- Views ---------- */
+  function show(view) {
+    $("view-home").hidden = view !== "home";
+    $("view-survey").hidden = view !== "survey";
+    $("view-plan").hidden = view !== "plan";
+    $("view-about").hidden = view !== "about";
+    $("view-reference").hidden = view !== "reference";
+    $("view-library").hidden = view !== "library";
+    $("view-loading").hidden = view !== "loading";
+    $("site-head").hidden = view === "loading";
+    document.querySelectorAll(".main-nav [data-nav]").forEach(function (a) { a.classList.toggle("active", a.getAttribute("data-nav") === view); });
+    $("head-progress").hidden = view !== "survey";
+    $("site-head").classList.toggle("with-progress", view === "survey");
+  }
+
+  /* ---------- Survey ---------- */
+  $("lig-options").innerHTML = Object.keys(LIGS).map(function (k) {
     var L = LIGS[k];
-    return '<button type="button" class="opt" id="opt-' + k + '" data-lig="' + k + '" aria-pressed="false">' +
-      '<span class="opt-tag">' + L.tag + '</span><span class="opt-name">' + L.name + '</span>' +
-      '<span class="opt-text">' + esc(L.text) + '</span><span class="opt-meta">' + L.meta + '</span></button>';
+    return '<button type="button" class="opt" data-lig="' + k + '" aria-pressed="false">' +
+      '<span class="opt-tag">' + L.tag + '</span><span class="opt-name display">' + L.name + '</span>' +
+      '<span class="opt-text">' + esc(L.text) + '</span><span class="opt-meta">' + L.meta + "</span></button>";
   }).join("");
-  gradeBox.innerHTML = Object.keys(GRADES).map(function (g) {
+  $("grade-options").innerHTML = Object.keys(GRADES).map(function (g) {
     var G = GRADES[g];
-    return '<button type="button" class="opt" id="opt-grade-' + g + '" data-grade="' + g + '" aria-pressed="false" disabled>' +
-      '<span class="grade-top"><span class="numeral">' + G.numeral + '</span><span class="pill ' + G.pill + '">' + G.sev + '</span></span>' +
-      '<span class="opt-tag">Grade ' + G.numeral + '</span><span class="opt-text">' + G.text + '</span>' +
+    return '<button type="button" class="opt" data-grade="' + g + '" aria-pressed="false">' +
+      '<span class="grade-top"><span class="numeral">' + G.numeral + '</span><span class="pill ' + G.pill + '">' + G.sev + "</span></span>" +
+      '<span class="opt-tag">Grade ' + G.numeral + '</span><span class="opt-text">' + G.text + "</span>" +
       (g === "3" ? '<span class="opt-meta">See a professional</span>' : "") + "</button>";
   }).join("");
+  $("days-chips").innerHTML = CHIPS.map(function (c) {
+    return '<button type="button" class="chip" data-days="' + c[1] + '" aria-pressed="false">' + c[0] + "</button>";
+  }).join("");
 
-  function syncSelector() {
+  function totalSteps() { return ans.grade === "3" ? 2 : 3; }
+
+  function renderSurvey() {
+    var total = totalSteps();
+    $("q1").hidden = step !== 1; $("q2").hidden = step !== 2; $("q3").hidden = step !== 3;
+    $("head-progress").setAttribute("aria-valuenow", step); $("head-progress").setAttribute("aria-valuemax", total);
+    $("head-progress").setAttribute("aria-valuetext", "Question " + step + " of " + total);
+    $("progress-fill").style.width = Math.round((step / total) * 100) + "%";
+
     document.querySelectorAll("[data-lig]").forEach(function (el) {
-      var on = el.getAttribute("data-lig") === state.lig;
-      if (el.classList.contains("opt")) el.setAttribute("aria-pressed", on ? "true" : "false");
-      else el.classList.toggle("active", on);
+      var on = el.getAttribute("data-lig") === ans.lig;
+      if (el.classList.contains("opt")) el.setAttribute("aria-pressed", String(on)); else el.classList.toggle("active", on);
     });
-    document.querySelectorAll(".opt[data-grade]").forEach(function (el) {
-      el.disabled = !state.lig;
-      el.setAttribute("aria-pressed", el.getAttribute("data-grade") === state.grade ? "true" : "false");
-    });
-    document.getElementById("step-grade").classList.toggle("locked", !state.lig);
-    document.getElementById("grade-hint").textContent = state.lig
-      ? "Not sure? Follow the higher grade. It moves more slowly, and the checks in each block let you move ahead when you're ready."
-      : "Choose where it hurts first.";
+    document.querySelectorAll("[data-grade]").forEach(function (el) { el.setAttribute("aria-pressed", String(el.getAttribute("data-grade") === ans.grade)); });
+    document.querySelectorAll("[data-days]").forEach(function (el) { el.setAttribute("aria-pressed", String(+el.getAttribute("data-days") === ans.days)); });
+    var inp = $("days-input");
+    if (document.activeElement !== inp) inp.value = ans.days === null ? "" : ans.days;
+
+    var prev = $("days-preview");
+    if (ans.days !== null && ans.lig && ans.grade && ans.grade !== "3") {
+      var P = DATA[ans.lig][ans.grade], day = ans.days + 1, s = startIndex(P, day), b = P.blocks[s.idx];
+      prev.innerHTML = '<span class="label">' + (ans.days === 0 ? "Today is day 1 of your recovery" : "That makes today day " + day + " of your recovery") + "</span>" +
+        "<strong>You'll start at Block " + (s.idx + 1) + ": " + esc(b.name) + "</strong>" +
+        "<span>" + (s.past ? "You're past the usual timeline, so start near the end and check each block's list." : "Days " + b.start + " to " + b.end + " of the plan") + "</span>";
+      prev.hidden = false;
+    } else prev.hidden = true;
+
+    var ok = step === 1 ? !!ans.lig : step === 2 ? !!ans.grade : ans.days !== null;
+    $("btn-next").disabled = !ok;
+    $("btn-next").textContent = step === 2 && ans.grade === "3" ? "See next steps" : step === 3 ? "See my plan" : "Next";
+    $("btn-back").textContent = step === 1 ? "Home" : "Back";
   }
 
-  function go() {
-    var h = "#" + state.lig + "-grade-" + state.grade;
-    if (location.hash === h) route(true); else location.hash = h;
+  function setDays(v) {
+    if (v === "" || v === null || isNaN(v)) { ans.days = null; }
+    else ans.days = Math.max(0, Math.min(365, Math.round(+v)));
+    renderSurvey();
   }
 
-  // Progress (per viewer, this browser only)
-  function progKey() { return "boc-progress-" + state.lig + "-" + state.grade; }
-  function getProg() { try { var v = localStorage.getItem(progKey()); return v === null ? -1 : parseInt(v, 10); } catch (e) { return -1; } }
-  function setProg(i) { try { if (i < 0) localStorage.removeItem(progKey()); else localStorage.setItem(progKey(), String(i)); } catch (e) {} }
+  function finishSurvey() {
+    nav(ans.grade === "3" ? ans.lig + "-grade-3" : ans.lig + "-grade-" + ans.grade + "-day-" + (ans.days + 1));
+  }
 
-  function renderPlan() {
-    var P = DATA[state.lig][state.grade];
-    if (state.grade === "3") return renderG3(P);
+  /* ---------- Plan ---------- */
+  function blockHTML(P, b, i, cur, mainCount) {
+    var isPrev = !b.end;
+    var days = isPrev
+      ? '<span class="days-label">After day</span><span class="days-num">' + (b.start - 1) + "</span>"
+      : '<span class="days-label">Days</span><span class="days-num">' + b.start + "–" + b.end + "</span>";
+    var rows = b.rows.map(function (r) {
+      var demo = demoHTML(r[0]);
+      return '<tr><td class="ex">' + esc(r[0]) + '</td><td class="sets">' + times(r[1]) + '</td><td class="desc">' + esc(r[2]) +
+        '</td><td class="demo">' + demo + "</td></tr>";
+    }).join("");
+    var action = isPrev ? "" : i === cur ? '<span class="badge">Your starting block</span>'
+      : '<button type="button" class="here" data-start="' + b.start + '">Start here instead</button>';
+    return '<article class="block' + (i === cur ? " current" : "") + '" id="block-' + i + '">' +
+      '<header class="block-side"><p class="days">' + days + "</p>" +
+      '<p class="block-count">' + (isPrev ? "Ongoing" : "Block " + (i + 1) + " of " + mainCount) + "</p>" + action + "</header>" +
+      '<div class="block-main"><h3 class="display">' + esc(b.name) + "</h3>" +
+      '<div class="part"><h4>How you should feel</h4>' + list(b.feel, "feel") + "</div>" +
+      '<div class="part"><h4>Workout plan</h4><div class="table-wrap"><table><thead><tr><th>Exercise</th><th>Sets and reps</th><th>Description</th><th>Demo</th></tr></thead><tbody>' + rows + "</tbody></table></div></div>" +
+      '<div class="part"><h4>Notes</h4>' + list(b.notes, "dots") + "</div></div></article>";
+  }
+
+  function renderPlan(day) {
+    var P = DATA[ans.lig][ans.grade];
     var main = P.blocks.filter(function (b) { return b.end; });
     var total = main[main.length - 1].end;
-    var weeks = Math.round(total / 7);
-    var cur = getProg();
+    var s = startIndex(P, day), cur = s.idx, b0 = P.blocks[cur];
 
     var segs = P.blocks.map(function (b, i) {
-      var cls = "seg" + (b.end ? "" : " prev") + (i === cur ? " current" : (cur > -1 && i < cur ? " done" : ""));
+      var cls = "seg" + (b.end ? "" : " prev") + (i === cur ? " current" : i < cur ? " done" : "");
       var label = b.end ? "Days " + b.start + " to " + b.end + ": " + b.name : "After day " + (b.start - 1) + ": " + b.name;
       var style = b.end ? ' style="flex-grow:' + (b.end - b.start + 1) + '"' : "";
       return '<button type="button" class="' + cls + '"' + style + ' data-jump="' + i + '" aria-label="' + esc(label) + '" title="' + esc(label) + '">' + (b.end ? i + 1 : "After") + "</button>";
     });
     var prevSeg = segs.pop();
     var ticks = main.map(function (b, i) {
-      var left = ((b.start - 1) / total) * 100;
-      return '<span class="' + (i === 0 ? "first" : "") + '" style="left:' + left.toFixed(2) + '%">' + (i === 0 ? "Day 1" : b.start) + "</span>";
+      return '<span class="' + (i === 0 ? "first" : "") + '" style="left:' + (((b.start - 1) / total) * 100).toFixed(2) + '%">' + (i === 0 ? "Day 1" : b.start) + "</span>";
     }).join("") + '<span class="last" style="left:100%">Day ' + total + "</span>";
+    if (day <= total) {
+      var tpos = ((day - 0.5) / total) * 100;
+      ticks += '<span class="today' + (tpos < 8 ? " first" : tpos > 92 ? " last" : "") + '" style="left:' + tpos.toFixed(2) + '%">You (day ' + day + ")</span>";
+    }
 
-    var blocks = P.blocks.map(function (b, i) {
-      var isPrev = !b.end;
-      var days = isPrev
-        ? '<span class="days-label">After day</span><span class="days-num">' + (b.start - 1) + "</span>"
-        : '<span class="days-label">Days</span><span class="days-num">' + b.start + "–" + b.end + "</span>";
-      var rows = b.rows.map(function (r) {
-        var v = VIDEOS[r[0]];
-        return '<tr><td class="ex">' + esc(r[0]) + (v ? '<br><a class="watch" href="' + esc(v) + '" target="_blank" rel="noopener">Watch video</a>' : "") +
-          '</td><td class="sets">' + times(r[1]) + '</td><td class="desc">' + esc(r[2]) + "</td></tr>";
-      }).join("");
-      return '<article class="block' + (i === cur ? " current" : "") + '" id="block-' + i + '">' +
-        '<header class="block-side"><p class="days">' + days + '</p>' +
-        '<p class="block-count">' + (isPrev ? "Ongoing" : "Block " + (i + 1) + " of " + main.length) + "</p>" +
-        '<button type="button" class="here" data-here="' + i + '" aria-pressed="' + (i === cur) + '">' + (i === cur ? "You're here" : "I'm on this block") + "</button></header>" +
-        '<div class="block-main"><h3>' + esc(b.name) + "</h3>" +
-        '<div class="part"><h4>How you should feel</h4>' + list(b.feel, "feel") + "</div>" +
-        '<div class="part"><h4>Workout plan</h4><div class="table-wrap"><table><thead><tr><th>Exercise</th><th>Sets and reps</th><th>Description</th></tr></thead><tbody>' + rows + "</tbody></table></div></div>" +
-        '<div class="part"><h4>Notes</h4>' + list(b.notes, "notes dots") + "</div></div></article>";
-    }).join("");
+    var earlier = "";
+    if (cur > 0) {
+      earlier = '<details class="earlier"><summary>Earlier blocks (' + cur + ")</summary><div class=\"blocks\">" +
+        P.blocks.slice(0, cur).map(function (b, i) { return blockHTML(P, b, i, cur, main.length); }).join("") + "</div></details>";
+    }
+    var rest = P.blocks.slice(cur).map(function (b, k) { return blockHTML(P, b, cur + k, cur, main.length); }).join("");
 
     var pain = "";
     for (var n = 0; n <= 10; n++) pain += '<span class="' + (n <= 3 ? "z-ok" : n <= 6 ? "z-warn" : "z-stop") + '">' + n + "</span>";
 
-    planBody.innerHTML =
-      '<div class="plan-head"><p class="eyebrow">Your plan · ' + esc(LIGS[state.lig].tag) + " · Grade " + ROMAN[state.grade] + "</p>" +
-      "<h2>" + esc(P.title) + "</h2>" +
-      '<dl class="facts"><div><dt>Typical length</dt><dd>About ' + weeks + " weeks</dd></div>" +
-      "<div><dt>Blocks</dt><dd>" + main.length + " + prevention</dd></div>" +
+    $("plan-body").innerHTML =
+      '<div class="plan-head">' +
+      '<h1 class="display">' + esc(P.title) + "</h1>" +
+      '<dl class="facts"><div><dt>Your recovery day</dt><dd>Day ' + day + "</dd></div>" +
+      "<div><dt>Typical length</dt><dd>About " + Math.round(total / 7) + " weeks</dd></div>" +
       "<div><dt>Return-to-play test</dt><dd>Day " + total + "</dd></div></dl>" +
-      '<p class="intro">' + esc(P.intro) + "</p>" +
-      '<div class="head-actions"><button type="button" class="btn" data-action="change">Change injury</button></div></div>' +
+      '<p class="intro">' + esc(P.intro) + "</p></div>" +
+
+      '<section class="start"><div class="start-main">' +
+      '<div class="part"><h4>How you should feel</h4>' + list(b0.feel, "feel") + "</div></div>" +
+      '<button type="button" class="btn" data-action="edit">Edit answers</button></section>' +
 
       '<div class="guide">' +
-      '<section class="panel alert"><h3>See a doctor instead if</h3>' + list(P.red, "dots") + "</section>" +
-      '<section class="panel"><h3>How to use this plan</h3><ul class="rules">' +
+      '<section class="panel alert"><h3 class="display">See a doctor instead if</h3>' + list(P.red, "dots") + "</section>" +
+      '<section class="panel"><h3 class="display">How to use this plan</h3><ul class="rules">' +
       '<li><span class="rule-icon">✓</span><div><strong>Check before you move on.</strong>Start a block only when you match its "How you should feel" list, even if that takes a few extra days.</div></li>' +
       '<li><span class="rule-icon">3</span><div><strong>Follow the pain rule.</strong>Pain during exercise stays at 3 out of 10 or lower, settles within an hour, and is not worse the next morning.</div></li>' +
       '<li><span class="rule-icon">↩</span><div><strong>Step back if needed.</strong>If the pain rule is broken, go back to the previous block for two days.</div></li></ul>' +
       '<div class="pain" aria-label="Pain scale from 0 to 10. 0 to 3 is fine, 4 to 6 means ease off, 7 to 10 means stop."><div class="pain-scale">' + pain + '</div><div class="pain-key"><span>0–3 Keep going</span><span>4–6 Ease off</span><span>7–10 Stop</span></div></div>' +
       "</section></div>" +
 
-      '<nav class="timeline" aria-label="Plan timeline"><div class="timeline-head"><h3>Your timeline</h3><p>Tap a block to jump to it. Mark the block you\'re on to track progress.</p></div>' +
+      '<h3 class="display tl-title">Your timeline</h3><nav class="timeline" id="tl-sticky" aria-label="Plan timeline">' +
       '<div class="tl"><div class="tl-bar">' + segs.join("") + "</div>" + prevSeg + '</div><div class="tl"><div class="tl-axis">' + ticks + "</div><div></div></div></nav>" +
 
-      '<div class="blocks">' + blocks + "</div>";
+      earlier + '<div class="blocks">' + rest + "</div>";
   }
 
-  function renderG3(P) {
-    var lig = state.lig;
-    planBody.innerHTML =
-      '<div class="plan-head"><p class="eyebrow">' + esc(LIGS[lig].tag) + " · Grade III</p><h2>" + esc(P.title) + "</h2></div>" +
+  function renderG3() {
+    var P = DATA[ans.lig]["3"];
+    $("plan-body").innerHTML =
+      '<div class="plan-head"><h1 class="display">' + esc(P.title) + "</h1></div>" +
       '<div class="stop-banner"><svg class="sign" viewBox="0 0 52 52" aria-hidden="true"><polygon points="15,1 37,1 51,15 51,37 37,51 15,51 1,37 1,15"/><rect x="11" y="23" width="30" height="6" rx="2"/></svg>' +
       "<div><strong>Go see a professional.</strong><p>This program does not include a self-guided plan for Grade III sprains.</p></div></div>" +
       '<div class="g3-grid">' +
-      '<section class="panel"><h3>Why</h3>' + list(P.why, "dots") + "</section>" +
-      '<section class="panel"><h3>What treatment usually looks like</h3>' + list(P.treat, "dots") + "</section>" +
-      '<section class="panel alert"><h3>Where to go</h3>' + list(DATA.where, "dots") + "</section>" +
-      '<section class="panel"><h3>After you are cleared</h3><p>' + esc(P.after) + '</p><div class="head-actions"><button type="button" class="btn primary" data-goto="2">See the Grade II plan</button><button type="button" class="btn" data-action="change">Change injury</button></div></section>' +
+      '<section class="panel"><h3 class="display">Why</h3>' + list(P.why, "dots") + "</section>" +
+      '<section class="panel"><h3 class="display">What treatment usually looks like</h3>' + list(P.treat, "dots") + "</section>" +
+      '<section class="panel alert"><h3 class="display">Where to go</h3>' + list(DATA.where, "dots") + "</section>" +
+      '<section class="panel"><h3 class="display">After you are cleared</h3><p>' + esc(P.after) + "</p>" +
+      '<div class="head-actions"><button type="button" class="btn primary" data-action="g2">See the Grade II plan</button><button type="button" class="btn" data-action="edit">Edit answers</button></div></section>' +
       "</div>";
   }
 
-  function route(scroll) {
-    var m = location.hash.match(/^#(lateral|medial|high-ankle)-grade-([123])$/);
-    if (!m) { planSec.hidden = true; syncSelector(); return; }
-    state.lig = m[1]; state.grade = m[2];
-    syncSelector();
-    renderPlan();
-    planSec.hidden = false;
-    if (scroll) planSec.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  /* ---------- Exercise library ---------- */
+  var LIB = null;
+  function buildLibrary() {
+    var map = {}, order = [], LNAME = { "lateral": "Lateral", "medial": "Medial", "high-ankle": "High ankle" };
+    ["lateral", "medial", "high-ankle"].forEach(function (lig) {
+      ["1", "2"].forEach(function (g) {
+        DATA[lig][g].blocks.forEach(function (b) {
+          b.rows.forEach(function (r) {
+            if (isNonRehab(r[0])) return;
+            var e = map[r[0]];
+            if (!e) { e = map[r[0]] = { name: r[0], desc: r[2], uses: [] }; order.push(r[0]); }
+            var same = /^Same as/i.test(e.desc), newSame = /^Same as/i.test(r[2]);
+            if (!newSame && (same || r[2].length > e.desc.length)) e.desc = r[2];
+            var key = lig + g;
+            if (!e.uses.some(function (u) { return u.key === key; }))
+              e.uses.push({ key: key, label: LNAME[lig] + " " + ROMAN[g], hash: lig + "-grade-" + g + "-day-" + b.start });
+          });
+        });
+      });
+    });
+    return order.map(function (n) { return map[n]; });
+  }
+  function renderLibrary() {
+    if (!LIB) {
+      LIB = buildLibrary();
+      $("lib-grid").innerHTML = LIB.map(function (e) {
+        return '<article class="lib-card" data-q="' + esc((e.name + " " + e.desc).toLowerCase()) + '">' + demoHTML(e.name) +
+          '<h3 class="display">' + esc(e.name) + "</h3><p>" + esc(e.desc) + "</p></article>";
+      }).join("") + '<p class="lib-empty" id="lib-empty" hidden>No exercises match your search.</p>';
+    }
+    filterLibrary();
+  }
+  function filterLibrary() {
+    var q = $("lib-search").value.trim().toLowerCase(), shown = 0, cards = document.querySelectorAll(".lib-card");
+    cards.forEach(function (c) { var ok = !q || c.getAttribute("data-q").indexOf(q) > -1; c.hidden = !ok; if (ok) shown++; });
+    $("lib-count").textContent = q ? "Showing " + shown + " of " + cards.length : cards.length + " exercises";
+    $("lib-empty").hidden = shown > 0;
+  }
+  $("lib-search").addEventListener("input", filterLibrary);
+
+  /* ---------- Router ---------- */
+  // Navigation works even where the hosting frame doesn't fire hashchange: update the hash if possible, then render directly.
+  var lastHash = null, backHash = "";
+  function nav(h) {
+    var INFO = ["about", "reference", "library"];
+    if (INFO.indexOf(h) > -1 && lastHash !== null && INFO.indexOf(lastHash.replace(/^#/, "")) === -1) backHash = lastHash.replace(/^#/, "");
+    try { if (location.hash !== "#" + h) location.hash = h; } catch (e) {}
+    route(h);
   }
 
-  function pickLig(k) {
-    state.lig = k;
-    syncSelector();
-    if (state.grade) go();
+  function route(forced) {
+    var h = (forced !== undefined ? forced : location.hash).replace(/^#/, ""), m;
+    lastHash = "#" + h;
+    var hold = keepScroll; keepScroll = false;
+    if (h === "survey") { show("survey"); renderSurvey(); }
+    else if (h === "about" || h === "reference") { show(h); }
+    else if (h === "library") { renderLibrary(); show("library"); }
+    else if ((m = h.match(/^(lateral|medial|high-ankle)-grade-([12])(?:-day-(\d+))?$/))) {
+      ans.lig = m[1]; ans.grade = m[2];
+      var day = m[3] ? Math.max(1, parseInt(m[3], 10)) : (ans.days !== null ? ans.days + 1 : 1);
+      ans.days = day - 1;
+      renderPlan(day); show("plan"); viewing = -1; requestAnimationFrame(updateViewing);
+    }
+    else if ((m = h.match(/^(lateral|medial|high-ankle)-grade-3$/))) { ans.lig = m[1]; ans.grade = "3"; renderG3(); show("plan"); }
+    else show("home");
+    if (hold) { var c = document.querySelector(".block.current"); scrollToEl(c); }
+    else window.scrollTo(0, 0);
   }
 
+  // Fade transition used by every page and question change: fade the current page out, swap, fade the new one in.
+  // The header stays put (so the progress line can animate) unless it is appearing from the landing page.
+  var busy = false;
+  var PAGES = ["view-home", "view-survey", "view-plan", "view-about", "view-reference", "view-library", "view-loading"];
+  function visible(ids) { return ids.map($).filter(function (el) { return !el.hidden; }); }
+  // Uses the Web Animations API so every fade runs the same way each time, in every browser.
+  function swap(action) {
+    if (reduceMotion || !Element.prototype.animate) { action(); return; }
+    if (busy) return;
+    busy = true;
+    var headWasHidden = $("site-head").hidden;
+    var outs = visible(PAGES).map(function (el) {
+      return el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 280, easing: "ease-in", fill: "forwards" });
+    });
+    setTimeout(function () {
+      try { action(); }
+      finally {
+        var after = visible(PAGES);
+        if (headWasHidden && !$("site-head").hidden) after.push($("site-head"));
+        after.forEach(function (el) {
+          el.animate([{ opacity: 0, transform: "translateY(10px)" }, { opacity: 1, transform: "none" }], { duration: 450, easing: "ease-out", fill: "backwards" });
+        });
+        outs.forEach(function (a) { a.cancel(); });
+        busy = false;
+      }
+    }, 290);
+  }
+
+  /* ---------- Events ---------- */
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-lig], [data-grade], [data-jump], [data-here], [data-action], [data-goto]");
+    var t = e.target.closest("[data-nav], [data-lig], [data-grade], [data-days], [data-jump], [data-start], [data-action], [data-plan]");
     if (!t) return;
-    if (t.hasAttribute("data-lig")) pickLig(t.getAttribute("data-lig"));
-    else if (t.hasAttribute("data-grade")) { if (!state.lig) return; state.grade = t.getAttribute("data-grade"); go(); }
+    if (t.hasAttribute("data-nav")) {
+      e.preventDefault();
+      var dest = t.getAttribute("data-nav");
+      swap(function () { if (dest === "survey") step = 1; nav(dest); });
+      return;
+    }
+    if (t.hasAttribute("data-lig")) { ans.lig = t.getAttribute("data-lig"); renderSurvey(); }
+    else if (t.hasAttribute("data-grade")) { ans.grade = t.getAttribute("data-grade"); renderSurvey(); }
+    else if (t.hasAttribute("data-days")) { setDays(+t.getAttribute("data-days")); }
     else if (t.hasAttribute("data-jump")) {
-      var b = document.getElementById("block-" + t.getAttribute("data-jump"));
-      if (b) b.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      var target = $("block-" + t.getAttribute("data-jump"));
+      if (target) { var det = target.closest("details"); if (det && !det.open) det.open = true; scrollToEl(target); }
     }
-    else if (t.hasAttribute("data-here")) {
-      var i = parseInt(t.getAttribute("data-here"), 10);
-      setProg(getProg() === i ? -1 : i);
-      renderPlan();
+    else if (t.hasAttribute("data-start")) {
+      var sd = t.getAttribute("data-start");
+      swap(function () { keepScroll = true; nav(ans.lig + "-grade-" + ans.grade + "-day-" + sd); });
     }
-    else if (t.hasAttribute("data-goto")) { state.grade = t.getAttribute("data-goto"); go(); }
-    else if (t.getAttribute("data-action") === "change") {
-      document.querySelector(".hero").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-    }
+    else if (t.getAttribute("data-action") === "edit") { swap(function () { step = 1; nav("survey"); }); }
+    else if (t.getAttribute("data-action") === "back") { swap(function () { nav(backHash); }); }
+    else if (t.hasAttribute("data-plan")) { var ph = t.getAttribute("data-plan"); swap(function () { nav(ph); }); }
+    else if (t.getAttribute("data-action") === "g2") { swap(function () { ans.grade = "2"; nav(ans.lig + "-grade-2-day-" + (ans.days !== null ? ans.days + 1 : 1)); }); }
   });
   document.querySelectorAll(".lig-group").forEach(function (g) {
     g.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pickLig(g.getAttribute("data-lig")); }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ans.lig = g.getAttribute("data-lig"); renderSurvey(); }
     });
   });
-  window.addEventListener("hashchange", function () { route(true); });
-  route(!!location.hash);
+  $("days-input").addEventListener("input", function () { setDays(this.value); });
+  $("days-minus").addEventListener("click", function () { setDays(ans.days === null ? 0 : ans.days - 1); });
+  $("days-plus").addEventListener("click", function () { setDays(ans.days === null ? 1 : ans.days + 1); });
+  $("btn-next").addEventListener("click", function () {
+    if (step === 3 || (step === 2 && ans.grade === "3")) { swap(startLoading); return; }
+    swap(function () {
+      step += 1;
+      renderSurvey(); window.scrollTo(0, 0);
+    });
+  });
+
+  // "Generating your plan" screen shown between the survey and the plan
+  var LOAD_MS = 2400;
+  function startLoading() {
+    var g3 = ans.grade === "3";
+    var msgs = g3 ? ["Checking your answers…", "Preparing your next steps…"]
+                  : ["Matching your injury…", "Finding your starting block…", "Building your timeline…"];
+    $("loading-title").textContent = g3 ? "Checking your answers" : "Generating your plan";
+    var stepEl = $("loading-step");
+    stepEl.textContent = msgs[0];
+    show("loading"); window.scrollTo(0, 0);
+    var bar = $("loading-fill");
+    if (bar.animate) bar.animate([{ width: "0%" }, { width: "100%" }], { duration: LOAD_MS, easing: "ease-in-out", fill: "forwards" });
+    else bar.style.width = "100%";
+    msgs.forEach(function (m, i) { if (i) setTimeout(function () { stepEl.textContent = m; }, (LOAD_MS / msgs.length) * i); });
+    setTimeout(function () { swap(finishSurvey); }, LOAD_MS);
+  }
+  $("btn-back").addEventListener("click", function () {
+    swap(function () {
+      if (step === 1) { nav("home"); return; }
+      step -= 1; renderSurvey(); window.scrollTo(0, 0);
+    });
+  });
+  window.addEventListener("hashchange", function () { if (location.hash !== lastHash) swap(function () { route(); }); });
+
+  // Sticky timeline: shadow when stuck, and light-orange highlight on the block you're looking at
+  var viewing = -1, ticking = false;
+  function updateViewing() {
+    ticking = false;
+    var nav = $("tl-sticky");
+    if (!nav || $("view-plan").hidden) return;
+    document.documentElement.style.setProperty("--sticky-h", nav.offsetHeight + "px");
+    var r = nav.getBoundingClientRect();
+    var natural = nav.previousElementSibling ? nav.previousElementSibling.getBoundingClientRect().bottom : r.top;
+    nav.classList.toggle("stuck", r.top - natural > 12);
+    var line = r.bottom + 80, idx = -1;
+    document.querySelectorAll("#plan-body .block").forEach(function (b) {
+      var br = b.getBoundingClientRect();
+      if (br.height && br.top <= line && br.bottom > r.bottom) idx = +b.id.split("-")[1];
+    });
+    if (idx !== viewing) {
+      viewing = idx;
+      nav.querySelectorAll(".seg").forEach(function (s) { s.classList.toggle("viewing", +s.getAttribute("data-jump") === idx); });
+    }
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(updateViewing); } }, { passive: true });
+  window.addEventListener("resize", function () { requestAnimationFrame(updateViewing); });
+  document.addEventListener("toggle", function () { requestAnimationFrame(updateViewing); }, true);
+  route();
 })();
 </script>
 </body>
