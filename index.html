@@ -153,10 +153,7 @@ a { color: var(--accent-ink); }
 .start-main { min-width: 0; }
 .start .part h4 { color: var(--accent-ink); }
 .start .btn { align-self: center; }
-.start-actions { display: flex; flex-wrap: wrap; gap: 10px; align-self: center; justify-content: flex-end; }
-.btn svg { width: 16px; height: 16px; flex: none; }
-.pdf-msg { flex-basis: 100%; text-align: right; font-size: 0.8rem; color: var(--stop, #b42318); }
-@media (max-width: 860px) { .start .btn { justify-self: start; } .start-actions { justify-content: flex-start; } .pdf-msg { text-align: left; } }
+@media (max-width: 860px) { .start .btn { justify-self: start; } }
 
 .guide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
 .panel { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
@@ -722,143 +719,7 @@ body.modal-open main video { visibility: hidden; }
       '<div class="part"><h4>Notes</h4>' + list(b.notes, "dots") + "</div></div></article>";
   }
 
-  /* ---------- Personalized PDF download ---------- */
-  var planDay = 1;
-  var ICON_DL = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0l-3.2-3.2M8 10l3.2-3.2M2.5 11.5v2h11v-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  var PDF_LIBS = ["https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",
-                  "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"];
-  function loadScript(src) {
-    return new Promise(function (resolve, reject) {
-      var have = document.querySelector('script[src="' + src + '"]');
-      if (have && have.dataset.loaded) return resolve();
-      var sc = have || document.createElement("script");
-      sc.src = src;
-      sc.onload = function () { sc.dataset.loaded = "1"; resolve(); };
-      sc.onerror = function () { sc.remove(); reject(new Error("Could not load " + src)); };
-      if (!have) document.head.appendChild(sc);
-    });
-  }
-  function downloadPlanPDF(btn) {
-    if (btn.disabled) return;
-    var label = btn.querySelector("span"), wrap = btn.parentNode, old = wrap.querySelector(".pdf-msg");
-    if (old) old.remove();
-    btn.disabled = true; label.textContent = "Preparing PDF…";
-    loadScript(PDF_LIBS[0]).then(function () { return loadScript(PDF_LIBS[1]); }).then(function () {
-      buildPlanPDF();
-    }).catch(function () {
-      var m = document.createElement("p"); m.className = "pdf-msg"; m.setAttribute("role", "status");
-      m.textContent = "The PDF couldn't be made. Check your internet connection and try again.";
-      wrap.appendChild(m);
-    }).then(function () { btn.disabled = false; label.textContent = "Download PDF"; });
-  }
-  function buildPlanPDF() {
-    var P = DATA[ans.lig][ans.grade], day = planDay;
-    var main = P.blocks.filter(function (b) { return b.end; });
-    var total = main[main.length - 1].end;
-    var cur = startIndex(P, day).idx;
-    var LIG = { "lateral": "Lateral (outer ankle)", "medial": "Medial (inner ankle)", "high-ankle": "High ankle" };
-    var doc = new window.jspdf.jsPDF({ unit: "mm", format: "a4" });
-    var W = 210, H = 297, M = 16, CW = W - 2 * M, y = M;
-    var ACC = [224, 88, 31], INK = [17, 17, 17], MUT = [91, 97, 104], SOFT = [252, 238, 230], RED = [180, 35, 24];
-    function lh(size) { return size * 0.3528 * 1.4; }
-    function room(h) { if (y + h > H - 18) { doc.addPage(); y = M; } }
-    function setT(size, style, color) { doc.setFont("helvetica", style || "normal"); doc.setFontSize(size); doc.setTextColor.apply(doc, color || INK); }
-    function para(text, size, style, color, x, w) {
-      x = x || M; w = w || CW; setT(size, style, color);
-      var lines = doc.splitTextToSize(text, w);
-      lines.forEach(function (ln) { room(lh(size)); doc.text(ln, x, y + lh(size) * 0.75); y += lh(size); });
-    }
-    function bullets(items, size, mark, color) {
-      items.forEach(function (t, i) {
-        setT(size, "normal", INK);
-        var lines = doc.splitTextToSize(t, CW - 7);
-        room(lh(size) * Math.min(lines.length, 2));
-        setT(size, "bold", color || ACC);
-        doc.text(mark === "num" ? (i + 1) + "." : "•", M + 1, y + lh(size) * 0.75);
-        setT(size, "normal", INK);
-        lines.forEach(function (ln) { room(lh(size)); doc.text(ln, M + 7, y + lh(size) * 0.75); y += lh(size); });
-        y += 1;
-      });
-    }
-    function heading(text, size, color) { room(lh(size) + 6); y += 3; para(text.toUpperCase(), size, "bold", color || INK); y += 1; }
-
-    // Header
-    setT(20, "bold", ACC); doc.text("REBOUND", M, y + 7);
-    setT(9, "normal", MUT); doc.text("Your personalized ankle rehab plan", W - M, y + 7, { align: "right" });
-    y += 11; doc.setDrawColor.apply(doc, ACC); doc.setLineWidth(0.6); doc.line(M, y, W - M, y); y += 6;
-    para(P.title.toUpperCase(), 17, "bold");
-    y += 1;
-    var made = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-    para("Injury: " + LIG[ans.lig] + " sprain, Grade " + ROMAN[ans.grade] + "   |   Recovery day: " + day + "   |   Made on " + made, 9, "normal", MUT);
-    y += 3;
-    // Facts
-    var facts = [["Your recovery day", "Day " + day], ["Typical length", "About " + Math.round(total / 7) + " weeks"], ["Return-to-play test", "Day " + total]];
-    var fw = (CW - 8) / 3;
-    facts.forEach(function (f, i) {
-      var x = M + i * (fw + 4);
-      doc.setFillColor(245, 246, 247); doc.roundedRect(x, y, fw, 15, 2, 2, "F");
-      setT(7.5, "bold", MUT); doc.text(f[0].toUpperCase(), x + 4, y + 5.5);
-      setT(12, "bold", INK); doc.text(f[1], x + 4, y + 11.5);
-    });
-    y += 20;
-    para(P.intro, 10, "normal", INK);
-    y += 2;
-
-    heading("See a doctor instead if", 11, RED);
-    bullets(P.red, 9.5, "dot", RED);
-
-    heading("How to use this plan", 11);
-    bullets([
-      "Check before you move on. Start a block only when you match its \"How you should feel\" list, even if that takes a few extra days.",
-      "Follow the pain rule. Pain during exercise stays at 3 out of 10 or lower, settles within an hour, and is not worse the next morning.",
-      "Step back if needed. If the pain rule is broken, go back to the previous block for two days."
-    ], 9.5, "num");
-    para("Pain scale:  0-3 keep going   |   4-6 ease off   |   7-10 stop", 9, "bold", MUT);
-    if (cur > 0) { y += 2; para("Your plan starts at block " + (cur + 1) + ". Earlier blocks are on the Rebound website.", 9, "italic", MUT); }
-
-    // Blocks from the user's starting block
-    P.blocks.slice(cur).forEach(function (b, k) {
-      var idx = cur + k;
-      room(40); y += 5;
-      var days = b.end ? "Days " + b.start + "-" + b.end : "After day " + (b.start - 1);
-      doc.setFillColor.apply(doc, idx === cur ? SOFT : [245, 246, 247]);
-      doc.setDrawColor.apply(doc, idx === cur ? ACC : [225, 228, 232]); doc.setLineWidth(idx === cur ? 0.5 : 0.2);
-      doc.roundedRect(M, y, CW, 13, 2, 2, "FD");
-      setT(8, "bold", idx === cur ? ACC : MUT); doc.text((b.end ? "BLOCK " + (idx + 1) + "  |  " : "") + days.toUpperCase(), M + 4, y + 5);
-      setT(12, "bold", INK); doc.text(b.name.toUpperCase(), M + 4, y + 10.5);
-      if (idx === cur) { setT(8, "bold", ACC); doc.text("YOUR STARTING BLOCK", W - M - 4, y + 5, { align: "right" }); }
-      y += 17;
-      if (b.feel && b.feel.length) { para("HOW YOU SHOULD FEEL", 8, "bold", MUT); y += 1; bullets(b.feel, 9.5, "dot", [21, 128, 61]); }
-      room(20);
-      doc.autoTable({
-        startY: y, margin: { left: M, right: M, bottom: 20 },
-        head: [["Exercise", "Sets and reps", "How to do it"]],
-        body: b.rows.map(function (r) { return [r[0], r[1].replace(/(\d) x (\d)/g, "$1 × $2"), r[2]]; }),
-        styles: { font: "helvetica", fontSize: 8.8, cellPadding: 2.2, textColor: INK, lineColor: [225, 228, 232], lineWidth: 0.2, valign: "top" },
-        headStyles: { fillColor: ACC, textColor: 255, fontStyle: "bold", fontSize: 8.5 },
-        columnStyles: { 0: { cellWidth: 40, fontStyle: "bold" }, 1: { cellWidth: 38 }, 2: { cellWidth: "auto", textColor: [60, 64, 70] } },
-        alternateRowStyles: { fillColor: [250, 250, 251] },
-        didDrawPage: function () { y = M; }
-      });
-      y = doc.lastAutoTable.finalY + 4;
-      if (b.notes && b.notes.length) { para("NOTES", 8, "bold", MUT); y += 1; bullets(b.notes, 9, "dot", MUT); }
-    });
-
-    // Footer on every page
-    var n = doc.getNumberOfPages();
-    for (var i = 1; i <= n; i++) {
-      doc.setPage(i);
-      doc.setDrawColor(225, 228, 232); doc.setLineWidth(0.2); doc.line(M, H - 13, W - M, H - 13);
-      setT(7.5, "normal", MUT);
-      doc.text("Rebound | General guidance, not a substitute for advice from a doctor or physiotherapist.", M, H - 8.5);
-      doc.text("Page " + i + " of " + n, W - M, H - 8.5, { align: "right" });
-    }
-    var fname = "Rebound-" + ans.lig.replace(/(^|-)(\w)/g, function (m, d, c) { return d + c.toUpperCase(); }) + "-Grade-" + ROMAN[ans.grade] + "-plan.pdf";
-    doc.save(fname);
-  }
-
   function renderPlan(day) {
-    planDay = day;
     var P = DATA[ans.lig][ans.grade];
     var main = P.blocks.filter(function (b) { return b.end; });
     var total = main[main.length - 1].end;
@@ -899,8 +760,7 @@ body.modal-open main video { visibility: hidden; }
 
       '<section class="start"><div class="start-main">' +
       '<div class="part"><h4>How you should feel</h4>' + list(b0.feel, "feel") + "</div></div>" +
-      '<div class="start-actions"><button type="button" class="btn primary" data-action="pdf">' + ICON_DL + '<span>Download PDF</span></button>' +
-      '<button type="button" class="btn" data-action="edit">Edit answers</button></div></section>' +
+      '<button type="button" class="btn" data-action="edit">Edit answers</button></section>' +
 
       '<div class="guide">' +
       '<section class="panel alert"><h3 class="display">See a doctor instead if</h3>' + list(P.red, "dots") + "</section>" +
@@ -1173,7 +1033,6 @@ body.modal-open main video { visibility: hidden; }
       var sd = t.getAttribute("data-start");
       swap(function () { keepScroll = true; nav(ans.lig + "-grade-" + ans.grade + "-day-" + sd); });
     }
-    else if (t.getAttribute("data-action") === "pdf") { downloadPlanPDF(t); }
     else if (t.getAttribute("data-action") === "edit") { swap(function () { step = 1; nav("survey"); }); }
     else if (t.getAttribute("data-action") === "back") { swap(function () { nav(backHash); }); }
     else if (t.hasAttribute("data-plan")) { var ph = t.getAttribute("data-plan"); swap(function () { nav(ph); }); }
